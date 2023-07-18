@@ -7,15 +7,21 @@ import useSWR from "swr";
 
 export default function Home() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
-  // console.log({ data });
+  const categories = [...new Set(data.map((category) => category.category))];
   return (
     <div>
       <h1>Restaurant Categories</h1>
       <ul>
-        {data.map((category) => (
-          <li key={category._id}>
-            <Link href={`/categories/${category._id}`}>
-              <>{category.category}</>
+        {categories.map((category) => (
+          <li key={category}>
+            <Link href={`/categories/${category}`}>
+              <li>{category}</li>
+              <Image
+                src={`/images/${category}.jpg`}
+                alt="Pasta"
+                width={185}
+                height={149}
+              />
             </Link>
           </li>
         ))}
