@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Image from "next/image";
 
-export default function ListPage() {
-  console.log("This log should appear in the browser's console.");
+export default function ListPage({ params }) {
+  console.log(params);
   const router = useRouter();
   const { category } = router.query;
   console.log(category);
