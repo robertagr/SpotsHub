@@ -1,22 +1,42 @@
-// import { useRouter } from "next/router";
+import React from "react";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import Image from "next/image";
 
-// export default function detailsList({ data, onToggleFavorite, artPiecesInfo }) {
-//   const router = useRouter();
-//   const { slug } = router.query;
+export default function ListPage() {
+  console.log("This log should appear in the browser's console.");
+  const router = useRouter();
+  const { category } = router.query;
+  console.log(category);
 
-//   const selectedArtPiece = data.find((piece) => piece.slug === slug);
+  const { data } = useSWR("/api/restaurants", {
+    fallbackData: [],
+  });
 
-//   return (
-//     <ArtPiecePreview
-//       image={selectedArtPiece.imageSource}
-//       title={selectedArtPiece.name}
-//       artist={selectedArtPiece.artist}
-//       year={selectedArtPiece.year}
-//       genre={selectedArtPiece.genre}
-//       colors={selectedArtPiece.colors}
-//       onToggleFavorite={onToggleFavorite}
-//       slug={slug}
-//       artPiecesInfo={artPiecesInfo}
-//     />
-//   );
-// }
+  console.log(data);
+
+  const restaurants = data.filter(
+    (restaurant) => restaurant.category === category
+  );
+  console.log({ restaurants });
+
+  return (
+    <div>
+      <h1>{category} </h1>
+      <ul>
+        {restaurants.map((restaurant) => (
+          <li key={restaurant._id}>
+            <h2>{restaurant.title}</h2>
+            <Image
+              src={restaurant.image}
+              alt={restaurant.title}
+              width={185}
+              height={149}
+            />
+            {/* Later add more details about the restaurant, such as description, mapURL, etc in the next Description page. */}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

@@ -5,7 +5,9 @@ export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
-    const locations = await Restaurant.find().select("category");
-    return response.status(200).json(locations);
+    const restaurants = await Restaurant.find();
+    return response.status(200).json(restaurants);
   }
+
+  response.status(405).end();
 }
