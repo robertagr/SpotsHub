@@ -2,9 +2,12 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
+import { useRestaurantStore } from "../../public/stores/restaurantStore";
 
 export default function Home() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
+  const setData = useRestaurantStore((state) => state.setData);
+  setData(data);
   const categories = [
     ...new Set(
       data.map((restaurantCategory) => restaurantCategory.restaurantCategory)
