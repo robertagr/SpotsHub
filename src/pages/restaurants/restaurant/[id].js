@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import useSWR from "swr";
 import { useRestaurantStore } from "../../../../public/stores/restaurantStore";
 
 export default function Restaurant() {
@@ -27,6 +26,12 @@ export default function Restaurant() {
           width={336}
           height={327}
         />
+        <div>
+          <Link href={selectedRestaurant.mapURL}>Location</Link>
+        </div>
+        <Link href={`/restaurants/${selectedRestaurant.restaurantCategory}`}>
+          Go Back
+        </Link>
         <p>{selectedRestaurant.description}</p>
       </ul>
     </div>

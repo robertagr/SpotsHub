@@ -6,12 +6,12 @@ export default function Navigation() {
       <li>
         <Link href="/">Home</Link>
       </li>
-      {/* <li>
-        <Link href="/art-pieces">Profile</Link>
+      <li>
+        <Link href="">Profile</Link>
       </li>
       <li>
-        <Link href="/favorites">Game</Link>
-      </li> */}
+        <Link href="">Game</Link>
+      </li>
     </ul>
   );
 }
