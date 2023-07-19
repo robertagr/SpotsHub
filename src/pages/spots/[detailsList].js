@@ -19,7 +19,7 @@ export default function ListPage() {
       <ul>
         {filteredRestaurants.map((restaurant) => (
           <li key={restaurant._id}>
-            <Link href={`/restaurants/restaurant/${restaurant.title}`}>
+            <Link href={`/spots/restaurant/${restaurant.title}`}>
               <h2>{restaurant.title}</h2>
               <Image
                 src={restaurant.image}

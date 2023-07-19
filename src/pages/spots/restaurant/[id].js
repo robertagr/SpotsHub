@@ -9,7 +9,7 @@ export default function Restaurant() {
   const { id } = router.query;
 
   const { restaurants, toggleFavorite } = useRestaurantStore();
-
+  console.log("rest", restaurants);
   // Find the selected restaurant based on the 'id' from the route
   const selectedRestaurant = restaurants.find(
     (restaurant) => restaurant.title === id
@@ -19,6 +19,7 @@ export default function Restaurant() {
   const isFavorite = useRestaurantStore((state) =>
     state.favoriteRestaurants.includes(selectedRestaurant._id)
   );
+  console.log(selectedRestaurant);
 
   if (!selectedRestaurant) {
     return <div>Loading...</div>;
@@ -36,14 +37,14 @@ export default function Restaurant() {
       <div>
         <Link href={selectedRestaurant.mapURL}>Location</Link>
       </div>
-      <Link href={`/restaurants/${selectedRestaurant.restaurantCategory}`}>
+      <Link href={`/spots/${selectedRestaurant.restaurantCategory}`}>
         Go Back
       </Link>
       <p>{selectedRestaurant.description}</p>
 
       {/* Add the favorite button */}
       <button onClick={() => toggleFavorite(selectedRestaurant._id)}>
-        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        {isFavorite ? "❤️" : "🖤"}
       </button>
     </div>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
 import { useRestaurantStore } from "../../public/stores/restaurantStore";
+import styled from "styled-components";
 
 export default function Home() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
@@ -12,24 +13,48 @@ export default function Home() {
       data.map((restaurantCategory) => restaurantCategory.restaurantCategory)
     ),
   ];
+
+  const Title = styled.h1`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.3px;
+  `;
+
+  const Container = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style-type: none;
+  `;
+
   return (
     <div>
-      <h1>Restaurant Categories</h1>
-      <ul>
+      <Title>Restaurant Categories</Title>
+      <Container>
         {categories.map((category) => (
           <li key={category}>
-            <Link href={`/restaurants/${category}`}>
+            <Link href={`/spots/${category}`}>
               <li>{category}</li>
-              <Image
-                src={`/images/${category}.jpg`}
-                alt="Pasta"
-                width={185}
-                height={149}
-              />
+              <li>
+                <Image
+                  src={`/images/${category}.jpg`}
+                  alt="Pasta"
+                  width={120}
+                  height={120}
+                />
+              </li>
             </Link>
           </li>
         ))}
-      </ul>
+      </Container>
     </div>
   );
 }
