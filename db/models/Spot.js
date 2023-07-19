@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const restaurantSchema = new Schema({
+const spotSchema = new Schema({
   title: {
     type: String,
     // required: true,
@@ -22,7 +22,6 @@ const restaurantSchema = new Schema({
   categories: { type: [Schema.Types.ObjectId], ref: "Category" },
 });
 
-const Restaurant =
-  mongoose.models.Restaurant || mongoose.model("Restaurant", restaurantSchema);
+const Spot = mongoose.models.Spot || mongoose.model("Spot", spotSchema);
 
-export default Restaurant;
+export default Spot;

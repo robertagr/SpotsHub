@@ -1,5 +1,5 @@
-import dbConnect from "../../../../db/models/connect";
-import Restaurant from "../../../../db/models/Spot";
+import dbConnect from "../../../db/models/connect";
+import Restaurant from "../../../db/models/Spot";
 
 export default async function handler(request, response) {
   await dbConnect();
