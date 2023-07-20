@@ -7,7 +7,7 @@ export default function TopNavBar() {
         <Link href="/">Eat</Link>
       </li>
       <li>
-        <Link href="/drinkCategory">Drink</Link>
+        <Link href="/drink">Drink</Link>
       </li>
     </ul>
   );

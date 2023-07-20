@@ -20,7 +20,7 @@ export default function DrinkCategory() {
       <ul>
         {categories.map((beverageCategory) => (
           <li key={beverageCategory}>
-            <Link href={`/drinkCategory/spots/${beverageCategory}`}>
+            <Link href={`/drink/spots/${beverageCategory}`}>
               <li>
                 <Image
                   src={`/drinkImages/${beverageCategory}.jpg`}
