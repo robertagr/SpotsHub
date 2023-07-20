@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <ul>
+    <footer>
       <li>
         <Link href="/">Home</Link>
       </li>
@@ -12,6 +12,6 @@ export default function Footer() {
       <li>
         <Link href="/randomSpot">Game</Link>
       </li>
-    </ul>
+    </footer>
   );
 }
