@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <div>
-      <Title>Restaurant Categories</Title>
+      <Title className="title">Restaurant Categories</Title>
       <Container>
         {categories.map((category) => (
           <li key={category}>
