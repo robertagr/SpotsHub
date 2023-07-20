@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Navigation() {
+export default function Footer() {
   return (
     <ul>
       <li>
@@ -10,7 +10,7 @@ export default function Navigation() {
         <Link href="">Profile</Link>
       </li>
       <li>
-        <Link href="">Game</Link>
+        <Link href="/randomSpot">Game</Link>
       </li>
     </ul>
   );

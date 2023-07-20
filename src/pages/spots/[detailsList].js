@@ -2,14 +2,14 @@ import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { useRestaurantStore } from "../../../public/stores/restaurantStore";
+import { useSpotStore } from "../../../public/stores/restaurantStore";
 
 export default function ListPage() {
   const router = useRouter();
   const { detailsList } = router.query;
-  const restaurants = useRestaurantStore((state) => state.restaurants);
+  const spots = useSpotStore((state) => state.spots);
 
-  const filteredRestaurants = restaurants.filter(
+  const filteredRestaurants = spots.filter(
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
 

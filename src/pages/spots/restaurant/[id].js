@@ -1,23 +1,20 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { useRestaurantStore } from "../../../../public/stores/restaurantStore";
+import { useSpotStore } from "../../../../public/stores/restaurantStore";
 
 export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { restaurants, favoriteRestaurants, toggleFavorite } =
-    useRestaurantStore();
-  const selectedRestaurant = restaurants?.find(
+  const { spots, favoriteSpots, toggleFavorite } = useSpotStore();
+  const selectedRestaurant = spots?.find(
     (restaurant) => restaurant.title === id
   );
 
-  const isFavorite = favoriteRestaurants.find(
+  const isFavorite = favoriteSpots.find(
     (rest) => rest === selectedRestaurant?._id
   );
-
-  console.log(selectedRestaurant);
 
   if (!selectedRestaurant) {
     return <div>Loading...</div>;
@@ -33,6 +30,8 @@ export default function Restaurant() {
         height={327}
       />
       <div>
+        <div>{selectedRestaurant.tags.join(" ")}</div>
+
         <Link href={selectedRestaurant.mapURL}>Location</Link>
       </div>
       <Link href={`/spots/${selectedRestaurant.restaurantCategory}`}>
@@ -40,7 +39,6 @@ export default function Restaurant() {
       </Link>
       <p>{selectedRestaurant.description}</p>
 
-      {/* Add the favorite button */}
       <button onClick={() => toggleFavorite(selectedRestaurant._id)}>
         {isFavorite ? "❤️" : "🖤"}
       </button>
