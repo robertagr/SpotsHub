@@ -7,8 +7,8 @@ import useSWR from "swr";
 export default function Home() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
   const setData = useRestaurantStore((state) => state.setData);
-  console.log(data);
   setData(data);
+
   const categories = [
     ...new Set(
       data.map((restaurantCategory) => restaurantCategory.restaurantCategory)
@@ -46,7 +46,7 @@ export default function Home() {
               <li>{category}</li>
               <li>
                 <Image
-                  src={`/images/${category}.jpg`}
+                  src={`/restaurantImages/${category}.jpg`}
                   alt="Pasta"
                   width={120}
                   height={120}

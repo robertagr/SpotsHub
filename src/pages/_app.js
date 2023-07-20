@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { SWRConfig } from "swr";
-import Navigation from "../../components/Navigation";
+import Footer from "../../components/Footer";
+import TopNavBar from "../../components/TopNavBar";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,8 +16,9 @@ export default function App({ Component, pageProps }) {
         },
       }}
     >
+      <TopNavBar></TopNavBar>
       <Component {...pageProps} />
-      <Navigation></Navigation>
+      <Footer></Footer>
     </SWRConfig>
   );
 }

@@ -17,8 +17,6 @@ export default function Restaurant() {
     (rest) => rest === selectedRestaurant?._id
   );
 
-  console.log(selectedRestaurant);
-
   if (!selectedRestaurant) {
     return <div>Loading...</div>;
   }
@@ -40,7 +38,6 @@ export default function Restaurant() {
       </Link>
       <p>{selectedRestaurant.description}</p>
 
-      {/* Add the favorite button */}
       <button onClick={() => toggleFavorite(selectedRestaurant._id)}>
         {isFavorite ? "❤️" : "🖤"}
       </button>
