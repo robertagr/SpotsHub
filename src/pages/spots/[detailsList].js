@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { useSpotStore } from "../../../public/stores/restaurantStore";
+import styled from "styled-components";
 
 export default function ListPage() {
   const router = useRouter();
@@ -13,9 +14,20 @@ export default function ListPage() {
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
 
+  const Title = styled.h1`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    color: #f2500a;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    padding: 20px;
+  `;
+
   return (
     <div>
-      <h1>{detailsList} </h1>
+      <Title>{detailsList} </Title>
       <ul>
         {filteredRestaurants.map((restaurant) => (
           <li key={restaurant._id}>

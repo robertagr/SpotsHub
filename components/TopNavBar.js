@@ -1,14 +1,20 @@
 import Link from "next/link";
+import { LiaPizzaSliceSolid, LiaCocktailSolid } from "react-icons/lia";
 
 export default function TopNavBar() {
   return (
-    <ul>
+    <nav>
       <li>
-        <Link href="/">Eat</Link>
+        <Link href="/">
+          <LiaPizzaSliceSolid fontSize={30} />
+        </Link>
       </li>
       <li>
-        <Link href="/drink">Drink</Link>
+        <Link href="/drink">
+          {" "}
+          <LiaCocktailSolid fontSize={30} />
+        </Link>
       </li>
-    </ul>
+    </nav>
   );
 }

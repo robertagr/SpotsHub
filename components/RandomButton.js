@@ -20,24 +20,20 @@ export default function RandomSpots() {
   return (
     <div>
       <button onClick={getRandomSpot}>Show Random Spot</button>
-      {/* Conditionally render the random spot */}
       {randomSpot && (
-        <>
-          <h3>Random Spot</h3>
-          <ul>
-            <li key={randomSpot._id}>
-              <Link href={`/drink/spots/bar/${randomSpot.title}`}>
-                <h2>{randomSpot.title}</h2>
-                <Image
-                  src={randomSpot.image}
-                  alt={randomSpot.title}
-                  width={185}
-                  height={149}
-                />
-              </Link>
-            </li>
-          </ul>
-        </>
+        <ul>
+          <li key={randomSpot._id}>
+            <Link href={`/drink/spots/bar/${randomSpot.title}`}>
+              <h2>{randomSpot.title}</h2>
+              <Image
+                src={randomSpot.image}
+                alt={randomSpot.title}
+                width={185}
+                height={149}
+              />
+            </Link>
+          </li>
+        </ul>
       )}
     </div>
   );

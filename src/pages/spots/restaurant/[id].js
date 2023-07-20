@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { useSpotStore } from "../../../../public/stores/restaurantStore";
+import styled from "styled-components";
 
 export default function Restaurant() {
   const router = useRouter();
@@ -20,9 +21,20 @@ export default function Restaurant() {
     return <div>Loading...</div>;
   }
 
+  const Title = styled.h1`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    color: black;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    padding: 20px;
+  `;
+
   return (
     <div>
-      <h2>{selectedRestaurant.title}</h2>
+      <Title>{selectedRestaurant.title}</Title>
       <Image
         src={selectedRestaurant.image}
         alt={selectedRestaurant.title}

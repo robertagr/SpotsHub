@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import useSWR from "swr";
+import styled from "styled-components";
 
 export default function DrinkCategory() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
@@ -14,26 +15,41 @@ export default function DrinkCategory() {
     ),
   ];
 
+  const Title = styled.h1`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* font-family: Montserrat; */
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    padding: 20px;
+  `;
+
+  const Container = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style-type: none;
+  `;
+
   return (
     <div>
-      <h1>Drink Category</h1>
-      <ul>
+      <Title>Drink Category</Title>
+      <Container>
         {categories.map((beverageCategory) => (
           <li key={beverageCategory}>
             <Link href={`/drink/spots/${beverageCategory}`}>
-              <li>
-                <Image
-                  src={`/drinkImages/${beverageCategory}.jpg`}
-                  alt={beverageCategory}
-                  width={185}
-                  height={149}
-                />
-                {beverageCategory}
-              </li>
+              <li className="photo-name"> {beverageCategory}</li>
+              <Image
+                src={`/drinkImages/${beverageCategory}.jpg`}
+                alt={beverageCategory}
+                width={140}
+                height={170}
+              />
             </Link>
           </li>
         ))}
-      </ul>
+      </Container>
     </div>
   );
 }
