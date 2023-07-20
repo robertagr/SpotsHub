@@ -10,7 +10,7 @@ export default function Footer() {
         <Link href="">Profile</Link>
       </li>
       <li>
-        <Link href="">Game</Link>
+        <Link href="/randomSpot">Game</Link>
       </li>
     </ul>
   );

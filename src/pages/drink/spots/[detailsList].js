@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSpotStore } from "../../../../public/stores/restaurantStore";
 
-export default function ListPage() {
+export default function DrinkSpotsList() {
   const router = useRouter();
   const { detailsList } = router.query;
   const spots = useSpotStore((state) => state.spots);
@@ -19,7 +19,7 @@ export default function ListPage() {
       <ul>
         {filteredDrinkSpots.map((spot) => (
           <li key={spot._id}>
-            <Link href={`/drink/spots/${spot.title}`}>
+            <Link href={`/drink/spots/bar/${spot.title}`}>
               <h2>{spot.title}</h2>
               <Image
                 src={spot.image}

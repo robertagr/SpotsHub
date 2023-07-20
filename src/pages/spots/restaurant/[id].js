@@ -30,6 +30,8 @@ export default function Restaurant() {
         height={327}
       />
       <div>
+        <div>{selectedRestaurant.tags.join(" ")}</div>
+
         <Link href={selectedRestaurant.mapURL}>Location</Link>
       </div>
       <Link href={`/spots/${selectedRestaurant.restaurantCategory}`}>
