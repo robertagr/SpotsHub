@@ -2,23 +2,21 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { useRestaurantStore } from "../../../../public/stores/restaurantStore";
-import Head from "next/head";
 
 export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { restaurants, toggleFavorite } = useRestaurantStore();
-  console.log("rest", restaurants);
-  // Find the selected restaurant based on the 'id' from the route
-  const selectedRestaurant = restaurants.find(
+  const { restaurants, favoriteRestaurants, toggleFavorite } =
+    useRestaurantStore();
+  const selectedRestaurant = restaurants?.find(
     (restaurant) => restaurant.title === id
   );
 
-  // Check if the restaurant is marked as a favorite
-  const isFavorite = useRestaurantStore((state) =>
-    state.favoriteRestaurants.includes(selectedRestaurant._id)
+  const isFavorite = favoriteRestaurants.find(
+    (rest) => rest === selectedRestaurant?._id
   );
+
   console.log(selectedRestaurant);
 
   if (!selectedRestaurant) {
