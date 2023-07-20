@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { useRestaurantStore } from "../../../../public/stores/restaurantStore";
+import { useSpotStore } from "../../../../public/stores/restaurantStore";
 
 export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { restaurants, favoriteRestaurants, toggleFavorite } =
-    useRestaurantStore();
-  const selectedRestaurant = restaurants?.find(
+  const { spots, favoriteSpots, toggleFavorite } = useSpotStore();
+  const selectedRestaurant = spots?.find(
     (restaurant) => restaurant.title === id
   );
 
-  const isFavorite = favoriteRestaurants.find(
+  const isFavorite = favoriteSpots.find(
     (rest) => rest === selectedRestaurant?._id
   );
 

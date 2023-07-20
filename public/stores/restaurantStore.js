@@ -1,23 +1,22 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export const useRestaurantStore = create(
+export const useSpotStore = create(
   persist(
     (set, get) => ({
-      restaurants: [],
-      favoriteRestaurants: [],
-      setData: (data) => set((state) => ({ restaurants: data })),
-      toggleFavorite: (restaurantId) =>
+      spots: [],
+      favoriteSpots: [],
+      setData: (data) => set((state) => ({ spots: data })),
+      toggleFavorite: (spotsId) =>
         set((state) => ({
-          favoriteRestaurants: state.favoriteRestaurants.includes(restaurantId)
-            ? state.favoriteRestaurants.filter((id) => id !== restaurantId)
-            : [...state.favoriteRestaurants, restaurantId],
+          favoriteSpots: state.favoriteSpots.includes(spotsId)
+            ? state.favoriteSpots.filter((id) => id !== spotsId)
+            : [...state.favoriteSpots, spotsId],
         })),
     }),
 
     {
-      name: "restaurant",
+      name: "spot",
     }
   )
 );
-    

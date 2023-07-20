@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRestaurantStore } from "../../public/stores/restaurantStore";
+import { useSpotStore } from "../../public/stores/restaurantStore";
 import styled from "styled-components";
 import useSWR from "swr";
 
 export default function Home() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
-  const setData = useRestaurantStore((state) => state.setData);
+  const setData = useSpotStore((state) => state.setData);
   setData(data);
 
   const categories = [

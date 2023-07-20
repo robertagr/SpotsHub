@@ -5,7 +5,6 @@ import useSWR from "swr";
 
 export default function DrinkCategory() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
-  console.log(data);
 
   const categories = [
     ...new Set(
@@ -21,7 +20,7 @@ export default function DrinkCategory() {
       <ul>
         {categories.map((beverageCategory) => (
           <li key={beverageCategory}>
-            <Link href={`/drinkCategory/${beverageCategory}`}>
+            <Link href={`/drinkCategory/spots/${beverageCategory}`}>
               <li>
                 <Image
                   src={`/drinkImages/${beverageCategory}.jpg`}
