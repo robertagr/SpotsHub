@@ -19,7 +19,10 @@ const spotSchema = new Schema({
     type: String,
     // required: true,
   },
-  categories: { type: [Schema.Types.ObjectId], ref: "Category" },
+  tags: { type: [Schema.Types.ObjectId], ref: "Tags" },
+
+  restaurantCategory: { type: String },
+  beverageCategory: { type: String },
 });
 
 const Spot = mongoose.models.Spot || mongoose.model("Spot", spotSchema);

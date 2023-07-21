@@ -21,6 +21,10 @@ const Container = styled.ul`
   list-style-type: none;
 `;
 
+const CategoryContainer = styled.div`
+  position: relative;
+`;
+
 export default function Home() {
   const { data } = useSWR("/api/restaurants", { fallbackData: [] });
   const setData = useSpotStore((state) => state.setData);
@@ -37,17 +41,17 @@ export default function Home() {
       <Title className="title">Restaurant Categories</Title>
       <Container>
         {categories.map((category) => (
-          <li key={category}>
+          <CategoryContainer key={category}>
             <Link href={`/spots/${category}`}>
               <li className="photo-name">{category}</li>
               <Image
                 src={`/restaurantImages/${category}.jpg`}
                 alt="Pasta"
                 width={140}
-                height={170}
+                height={200}
               />
             </Link>
-          </li>
+          </CategoryContainer>
         ))}
       </Container>
     </div>

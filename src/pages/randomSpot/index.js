@@ -22,7 +22,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Random = styled.p`
+const Random = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -40,11 +40,14 @@ export default function RandomSpot() {
     <div>
       <Title>Time to choose!</Title>
       {isClient ? (
-        <p>
-          Too many cool places and don't know where to go? Just click the button
-          below, and let the button decide for you!
+        <Random>
+          <p>
+            Too many cool places and don't know where to go? Just click the
+            button below, and let the button decide for you!
+          </p>
+
           <RandomButton></RandomButton>
-        </p>
+        </Random>
       ) : (
         "Pre-rendered"
       )}

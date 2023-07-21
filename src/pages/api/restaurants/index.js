@@ -1,12 +1,12 @@
 import dbConnect from "../../../../db/models/connect";
-import Restaurant from "../../../../db/models/Spot";
+import Spot from "../../../../db/models/Spot";
 
 export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
-    const restaurants = await Restaurant.find();
-    return response.status(200).json(restaurants);
+    const spots = await Spot.find();
+    return response.status(200).json(spots);
   }
 
   response.status(405).end();
