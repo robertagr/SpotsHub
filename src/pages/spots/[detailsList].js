@@ -4,15 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSpotStore } from "../../../public/stores/spotStore";
 import styled from "styled-components";
+import FilterTags from "../../../components/FilterTags";
 
 export default function ListPage() {
   const router = useRouter();
   const { detailsList } = router.query;
   const spots = useSpotStore((state) => state.spots);
+  const selectedTags = useSpotStore((state) => state.selectedTags);
 
   const selectedRestaurantCategory = spots.filter(
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
+
+  const selectedRestaurantTags = spots
+    .map((restaurant) => restaurant.tags)
+    .filter((item) => item !== undefined);
+
+  // const allTags = selectedRestaurantCategory.reduce((acc, restaurant) => {
+  //   restaurant.tags.forEach((tag) => acc.add(tag));
+  //   return acc;
+  // }, new Set());
+
+  // const uniqueTags = Array.from(allTags);
 
   const Title = styled.h1`
     display: flex;
@@ -41,6 +54,7 @@ export default function ListPage() {
   return (
     <div>
       <Title>{detailsList} </Title>
+      <FilterTags selectedRestaurantTags={selectedRestaurantTags} />
       <Container>
         {selectedRestaurantCategory.map((restaurant) => (
           <CategoryContainer key={restaurant._id}>

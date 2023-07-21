@@ -13,12 +13,19 @@ const Title = styled.h1`
   letter-spacing: -0.3px;
   padding: 20px;
 `;
-
-const Container = styled.ul`
+const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+`;
+const Container = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* flex-wrap: wrap; */
   gap: 20px;
   list-style-type: none;
+  width: 80%;
+  justify-items: center;
 `;
 
 const CategoryContainer = styled.div`
@@ -37,7 +44,7 @@ export default function Home() {
   ];
 
   return (
-    <div>
+    <Wrapper>
       <Title className="title">Restaurant Categories</Title>
       <Container>
         {categories.map((category) => (
@@ -54,6 +61,6 @@ export default function Home() {
           </CategoryContainer>
         ))}
       </Container>
-    </div>
+    </Wrapper>
   );
 }

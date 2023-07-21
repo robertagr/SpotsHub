@@ -46,7 +46,7 @@ export default function RandomSpot() {
             button below, and let the button decide for you!
           </p>
 
-          <RandomButton></RandomButton>
+          <RandomButton />
         </Random>
       ) : (
         "Pre-rendered"
