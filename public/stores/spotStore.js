@@ -6,6 +6,8 @@ export const useSpotStore = create(
     (set, get) => ({
       spots: [],
       favoriteSpots: [],
+      selectedTags: [],
+
       setData: (data) => set((state) => ({ spots: data })),
       toggleFavorite: (spotsId) =>
         set((state) => ({
@@ -13,6 +15,7 @@ export const useSpotStore = create(
             ? state.favoriteSpots.filter((id) => id !== spotsId)
             : [...state.favoriteSpots, spotsId],
         })),
+      setSelectedTags: (tags) => set({ selectedTags: tags }),
     }),
 
     {

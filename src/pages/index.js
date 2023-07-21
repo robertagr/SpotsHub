@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useSpotStore } from "../../public/stores/restaurantStore";
+import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -13,12 +13,23 @@ const Title = styled.h1`
   letter-spacing: -0.3px;
   padding: 20px;
 `;
-
-const Container = styled.ul`
+const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+`;
+const Container = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* flex-wrap: wrap; */
   gap: 20px;
   list-style-type: none;
+  width: 80%;
+  justify-items: center;
+`;
+
+const CategoryContainer = styled.div`
+  position: relative;
 `;
 
 export default function Home() {
@@ -33,23 +44,23 @@ export default function Home() {
   ];
 
   return (
-    <div>
+    <Wrapper>
       <Title className="title">Restaurant Categories</Title>
       <Container>
         {categories.map((category) => (
-          <li key={category}>
+          <CategoryContainer key={category}>
             <Link href={`/spots/${category}`}>
-              <li className="photo-name">{category}</li>
+              <h2 className="photo-name">{category}</h2>
               <Image
                 src={`/restaurantImages/${category}.jpg`}
                 alt="Pasta"
                 width={140}
-                height={170}
+                height={200}
               />
             </Link>
-          </li>
+          </CategoryContainer>
         ))}
       </Container>
-    </div>
+    </Wrapper>
   );
 }

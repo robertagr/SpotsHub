@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import { SWRConfig } from "swr";
 import Footer from "../../components/Footer";
 import TopNavBar from "../../components/TopNavBar";
-import "./app.module.css";
 
 export default function App({ Component, pageProps }) {
   return (

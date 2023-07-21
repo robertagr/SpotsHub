@@ -32,22 +32,26 @@ export default function DrinkCategory() {
     list-style-type: none;
   `;
 
+  const CategoryContainer = styled.div`
+    position: relative;
+  `;
+
   return (
     <div>
       <Title>Drink Category</Title>
       <Container>
         {categories.map((beverageCategory) => (
-          <li key={beverageCategory}>
+          <CategoryContainer key={beverageCategory}>
             <Link href={`/drink/spots/${beverageCategory}`}>
               <li className="photo-name"> {beverageCategory}</li>
               <Image
                 src={`/drinkImages/${beverageCategory}.jpg`}
                 alt={beverageCategory}
                 width={140}
-                height={170}
+                height={190}
               />
             </Link>
-          </li>
+          </CategoryContainer>
         ))}
       </Container>
     </div>
