@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { useSpotStore } from "../../../../public/stores/restaurantStore";
+import { useSpotStore } from "../../../../public/stores/spotStore";
 import styled from "styled-components";
 
 export default function Restaurant() {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSpotStore } from "../public/stores/restaurantStore";
+import { useSpotStore } from "../public/stores/spotStore";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";

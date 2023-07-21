@@ -6,6 +6,7 @@ export const useSpotStore = create(
     (set, get) => ({
       spots: [],
       favoriteSpots: [],
+
       setData: (data) => set((state) => ({ spots: data })),
       toggleFavorite: (spotsId) =>
         set((state) => ({

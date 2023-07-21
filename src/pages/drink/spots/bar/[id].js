@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { useSpotStore } from "../../../../../public/stores/restaurantStore";
+import { useSpotStore } from "../../../../../public/stores/spotStore";
 
 export default function Bar() {
   const router = useRouter();

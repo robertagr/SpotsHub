@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import { useSpotStore } from "../../../../public/stores/restaurantStore";
+import { useSpotStore } from "../../../../public/stores/spotStore";
 import styled from "styled-components";
 
 export default function DrinkSpotsList() {
@@ -12,7 +12,7 @@ export default function DrinkSpotsList() {
 
   const [isClient, setIsClient] = useState(false);
 
-  const filteredDrinkSpots = spots.filter(
+  const selectedDrinkCategory = spots.filter(
     (spot) => spot.beverageCategory === detailsList
   );
 
@@ -30,25 +30,39 @@ export default function DrinkSpotsList() {
     letter-spacing: -0.3px;
     padding: 20px;
   `;
+
+  const Container = styled.ul`
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    list-style-type: none;
+  `;
+
+  const CategoryContainer = styled.div`
+    position: relative;
+  `;
+
   return (
     <div>
       <Title>{detailsList}</Title>
       {isClient ? (
-        <ul>
-          {filteredDrinkSpots.map((spot) => (
-            <li key={spot._id}>
+        <Container>
+          {selectedDrinkCategory.map((spot) => (
+            <CategoryContainer key={spot._id}>
               <Link href={`/drink/spots/bar/${spot.title}`}>
-                <h2>{spot.title}</h2>
+                <h2 className="photo-name">{spot.title}</h2>
                 <Image
                   src={spot.image}
                   alt={spot.title}
-                  width={185}
-                  height={149}
+                  width={320}
+                  height={130}
                 />
               </Link>
-            </li>
+            </CategoryContainer>
           ))}
-        </ul>
+        </Container>
       ) : (
         "Pre-rendered"
       )}

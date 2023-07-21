@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useSpotStore } from "../../public/stores/restaurantStore";
+import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
 
@@ -43,7 +43,7 @@ export default function Home() {
         {categories.map((category) => (
           <CategoryContainer key={category}>
             <Link href={`/spots/${category}`}>
-              <li className="photo-name">{category}</li>
+              <h2 className="photo-name">{category}</h2>
               <Image
                 src={`/restaurantImages/${category}.jpg`}
                 alt="Pasta"
