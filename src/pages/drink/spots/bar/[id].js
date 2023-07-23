@@ -26,7 +26,7 @@ export default function Bar() {
         width={336}
         height={327}
       />
-      <div>{selectedBar.tags.join(" ")}</div>
+      {/* <div>{selectedBar.tags.join(" ")}</div> */}
       <div>
         <Link href={selectedBar.mapURL}>Location</Link>
       </div>
