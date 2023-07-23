@@ -53,7 +53,7 @@ export default function Home() {
               <h2 className="photo-name">{category}</h2>
               <Image
                 src={`/restaurantImages/${category}.jpg`}
-                alt="Pasta"
+                alt={category}
                 width={140}
                 height={200}
               />
