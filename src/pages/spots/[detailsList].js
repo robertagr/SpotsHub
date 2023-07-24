@@ -12,6 +12,10 @@ export default function ListPage() {
   const spots = useSpotStore((state) => state.spots);
   const selectedTags = useSpotStore((state) => state.selectedTags);
 
+  if (!spots || !detailsList) {
+    return <h3>Loading...</h3>;
+  }
+
   const selectedRestaurantCategory = spots.filter(
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
@@ -35,7 +39,7 @@ export default function ListPage() {
     color: #f2500a;
     font-size: 20px;
     letter-spacing: -0.3px;
-    padding: 20px;
+    padding: 25px 0px 0px 0px;
   `;
 
   const Container = styled.ul`
@@ -45,7 +49,7 @@ export default function ListPage() {
     align-items: center;
     gap: 15px;
     list-style-type: none;
-    margin: 30px;
+    margin: 20px;
   `;
 
   const CategoryContainer = styled.div`

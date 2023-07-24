@@ -8,7 +8,6 @@ const Title = styled.h1`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* font-family: Montserrat; */
   font-size: 20px;
   letter-spacing: -0.3px;
   padding: 20px;
@@ -18,19 +17,15 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const Container = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   list-style-type: none;
-  margin: 30px;
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* flex-wrap: wrap; */
-  /* gap: 20px;
-  list-style-type: none;
   width: 80%;
-  justify-items: center; */
+  justify-items: center;
+  margin: 20px;
 `;
 
 const CategoryContainer = styled.div`
