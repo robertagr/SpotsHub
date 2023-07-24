@@ -4,13 +4,13 @@
   box-sizing: border-box;
   margin: 0 auto;
   padding: 0;
+  max-width: 414px;
+  /* max-height: 696px; */
 }
 
 main {
   font-family: system-ui;
   background-color: rgb(255, 255, 255);
-  width: 414px;
-  height: 696px;
   border-style: solid;
   border-color: rgb(183, 180, 178);
   border-radius: 10px;
@@ -39,6 +39,7 @@ footer {
   justify-content: center;
   padding: 20px;
   border-block-start: 1px solid rgb(160, 156, 156);
+  margin-top: auto;
 }
 
 .photo-name {
