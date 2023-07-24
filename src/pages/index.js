@@ -19,13 +19,18 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const Container = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* flex-wrap: wrap; */
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   list-style-type: none;
+  margin: 30px;
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* flex-wrap: wrap; */
+  /* gap: 20px;
+  list-style-type: none;
   width: 80%;
-  justify-items: center;
+  justify-items: center; */
 `;
 
 const CategoryContainer = styled.div`

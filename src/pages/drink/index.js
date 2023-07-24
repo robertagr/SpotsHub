@@ -30,6 +30,7 @@ export default function DrinkCategory() {
     flex-wrap: wrap;
     gap: 20px;
     list-style-type: none;
+    margin: 30px;
   `;
 
   const CategoryContainer = styled.div`
