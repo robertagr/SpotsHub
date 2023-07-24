@@ -44,7 +44,9 @@ export default function Home() {
 
   const categories = [
     ...new Set(
-      data.map((restaurantCategory) => restaurantCategory.restaurantCategory)
+      data
+        .map((restaurantCategory) => restaurantCategory.restaurantCategory)
+        .filter((item) => item !== undefined)
     ),
   ];
 

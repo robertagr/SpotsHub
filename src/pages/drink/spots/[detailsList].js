@@ -38,6 +38,7 @@ export default function DrinkSpotsList() {
     align-items: center;
     gap: 15px;
     list-style-type: none;
+    margin: 30px;
   `;
 
   const CategoryContainer = styled.div`
