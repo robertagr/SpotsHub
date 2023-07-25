@@ -23,7 +23,7 @@ const initialViewState = {
 
 export default function SpotsMap() {
   const { spots } = useSpotStore();
-  console.log(spots);
+  //   console.log(spots);
 
   return (
     <MapContainer>
@@ -38,10 +38,9 @@ export default function SpotsMap() {
         {spots.map((spot) => {
           <Marker
             key={spot._id} // Assuming each spot object has a unique _id property
-            longitude={spot.longitude}
-            latitude={spot.latitude}
+            longitude={parseFloat(spot.longitude)}
+            latitude={parseFloat(spot.latitude)}
           >
-            {/* Customize the pin here, you can use an image or custom SVG */}
             <div>📍</div>
           </Marker>;
         })}
