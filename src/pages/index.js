@@ -33,10 +33,16 @@ const CategoryContainer = styled.div`
 `;
 
 export default function Home() {
-  const { data } = useSWR("/api/restaurants", { fallbackData: [] });
+  const { data, error, isLoading } = useSWR("/api/restaurants", {
+    fallbackData: [],
+  });
   const setData = useSpotStore((state) => state.setData);
-  setData(data);
 
+  if (!data || isLoading || error) {
+    return null;
+  }
+
+  setData(data);
   const categories = [
     ...new Set(
       data

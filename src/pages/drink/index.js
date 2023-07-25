@@ -5,7 +5,13 @@ import useSWR from "swr";
 import styled from "styled-components";
 
 export default function DrinkCategory() {
-  const { data } = useSWR("/api/restaurants", { fallbackData: [] });
+  const { data, error, isLoading } = useSWR("/api/restaurants", {
+    fallbackData: [],
+  });
+
+  if (!data || isLoading || error) {
+    return null;
+  }
 
   const categories = [
     ...new Set(
