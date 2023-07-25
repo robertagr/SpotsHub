@@ -9,8 +9,16 @@
 }
 
 main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: system-ui;
   background-color: rgb(255, 255, 255);
+  height: 520px;
+}
+
+.div-main {
   border-style: solid;
   border-color: rgb(183, 180, 178);
   border-radius: 10px;

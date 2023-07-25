@@ -6,7 +6,7 @@ const FooterContainer = styled.footer`
   gap: 20px;
   justify-content: center;
   padding: 20px;
-  /* border-radius: 9px; */
+  border-radius: 9px;
   margin-top: auto;
   background: linear-gradient(
     to right,

@@ -23,7 +23,6 @@ const Container = styled.ul`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   list-style-type: none;
-  width: 80%;
   justify-items: center;
   margin: 20px;
 `;
