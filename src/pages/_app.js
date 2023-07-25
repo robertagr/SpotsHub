@@ -17,11 +17,13 @@ export default function App({ Component, pageProps }) {
         },
       }}
     >
-      <main>
-        <TopNavBar></TopNavBar>
-        <Component {...pageProps} />
-        <Footer></Footer>
-      </main>
+      <div className="div-main">
+        <TopNavBar />
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+      </div>
     </SWRConfig>
   );
 }

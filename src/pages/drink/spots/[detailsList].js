@@ -10,15 +10,13 @@ export default function DrinkSpotsList() {
   const { detailsList } = router.query;
   const spots = useSpotStore((state) => state.spots);
 
-  const [isClient, setIsClient] = useState(false);
-
   const selectedDrinkCategory = spots.filter(
     (spot) => spot.beverageCategory === detailsList
   );
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  if (!spots || !detailsList) {
+    return <h3>Loading...</h3>;
+  }
 
   const Title = styled.h1`
     display: flex;
@@ -28,7 +26,7 @@ export default function DrinkSpotsList() {
     color: #f2500a;
     font-size: 20px;
     letter-spacing: -0.3px;
-    padding: 20px;
+    padding: 25px 0px 0px 0px;
   `;
 
   const Container = styled.ul`
@@ -38,6 +36,7 @@ export default function DrinkSpotsList() {
     align-items: center;
     gap: 15px;
     list-style-type: none;
+    margin: 30px;
   `;
 
   const CategoryContainer = styled.div`
@@ -47,25 +46,21 @@ export default function DrinkSpotsList() {
   return (
     <div>
       <Title>{detailsList}</Title>
-      {isClient ? (
-        <Container>
-          {selectedDrinkCategory.map((spot) => (
-            <CategoryContainer key={spot._id}>
-              <Link href={`/drink/spots/bar/${spot.title}`}>
-                <h2 className="photo-name">{spot.title}</h2>
-                <Image
-                  src={spot.image}
-                  alt={spot.title}
-                  width={320}
-                  height={130}
-                />
-              </Link>
-            </CategoryContainer>
-          ))}
-        </Container>
-      ) : (
-        "Pre-rendered"
-      )}
+      <Container>
+        {selectedDrinkCategory.map((spot) => (
+          <CategoryContainer key={spot._id}>
+            <Link href={`/drink/spots/bar/${spot.title}`}>
+              <h2 className="photo-name">{spot.title}</h2>
+              <Image
+                src={spot.image}
+                alt={spot.title}
+                width={320}
+                height={130}
+              />
+            </Link>
+          </CategoryContainer>
+        ))}
+      </Container>
     </div>
   );
 }

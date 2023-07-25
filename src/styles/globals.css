@@ -2,23 +2,27 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: 414px;
+  text-align: center;
 }
 
 main {
-  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: system-ui;
-  margin: 0 auto;
   background-color: rgb(255, 255, 255);
+  height: 520px;
 }
 
-nav {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  padding: 10px;
-  border-block-end: 1px solid rgb(160, 156, 156);
+.div-main {
+  border-style: solid;
+  border-color: rgb(183, 180, 178);
+  border-radius: 10px;
+  border-width: 1px;
 }
 
 li {
@@ -28,14 +32,6 @@ li {
 img {
   object-fit: cover;
   border-radius: 20px;
-}
-
-footer {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  padding: 10px;
-  border-block-start: 1px solid rgb(160, 156, 156);
 }
 
 .photo-name {

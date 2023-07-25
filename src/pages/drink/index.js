@@ -5,7 +5,13 @@ import useSWR from "swr";
 import styled from "styled-components";
 
 export default function DrinkCategory() {
-  const { data } = useSWR("/api/restaurants", { fallbackData: [] });
+  const { data, error, isLoading } = useSWR("/api/restaurants", {
+    fallbackData: [],
+  });
+
+  if (!data || isLoading || error) {
+    return null;
+  }
 
   const categories = [
     ...new Set(
@@ -25,11 +31,19 @@ export default function DrinkCategory() {
     padding: 20px;
   `;
 
-  const Container = styled.ul`
+  const Wrapper = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  `;
+
+  const Container = styled.ul`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     list-style-type: none;
+    justify-items: center;
+    margin: 20px;
   `;
 
   const CategoryContainer = styled.div`
@@ -37,7 +51,7 @@ export default function DrinkCategory() {
   `;
 
   return (
-    <div>
+    <Wrapper>
       <Title>Drink Category</Title>
       <Container>
         {categories.map((beverageCategory) => (
@@ -54,6 +68,6 @@ export default function DrinkCategory() {
           </CategoryContainer>
         ))}
       </Container>
-    </div>
+    </Wrapper>
   );
 }

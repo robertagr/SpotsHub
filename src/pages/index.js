@@ -8,7 +8,6 @@ const Title = styled.h1`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* font-family: Montserrat; */
   font-size: 20px;
   letter-spacing: -0.3px;
   padding: 20px;
@@ -18,14 +17,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 const Container = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* flex-wrap: wrap; */
   gap: 20px;
   list-style-type: none;
-  width: 80%;
   justify-items: center;
+  margin: 20px;
 `;
 
 const CategoryContainer = styled.div`
@@ -33,13 +32,21 @@ const CategoryContainer = styled.div`
 `;
 
 export default function Home() {
-  const { data } = useSWR("/api/restaurants", { fallbackData: [] });
+  const { data, error, isLoading } = useSWR("/api/restaurants", {
+    fallbackData: [],
+  });
   const setData = useSpotStore((state) => state.setData);
-  setData(data);
 
+  if (!data || isLoading || error) {
+    return null;
+  }
+
+  setData(data);
   const categories = [
     ...new Set(
-      data.map((restaurantCategory) => restaurantCategory.restaurantCategory)
+      data
+        .map((restaurantCategory) => restaurantCategory.restaurantCategory)
+        .filter((item) => item !== undefined)
     ),
   ];
 
@@ -53,7 +60,7 @@ export default function Home() {
               <h2 className="photo-name">{category}</h2>
               <Image
                 src={`/restaurantImages/${category}.jpg`}
-                alt="Pasta"
+                alt={category}
                 width={140}
                 height={200}
               />
