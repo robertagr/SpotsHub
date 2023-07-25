@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import MapGL from "react-map-gl";
+import MapGL, { Marker } from "react-map-gl";
+import { useSpotStore } from "../public/stores/spotStore";
 
 const MapContainer = styled.div`
   position: relative;
@@ -21,6 +22,9 @@ const initialViewState = {
 };
 
 export default function SpotsMap() {
+  const { spots } = useSpotStore();
+  console.log(spots);
+
   return (
     <MapContainer>
       <MapGL
@@ -30,7 +34,18 @@ export default function SpotsMap() {
         initialViewState={initialViewState}
         mapStyle="mapbox://styles/mapbox/light-v11"
         attributionControl={false}
-      />
+      >
+        {spots.map((spot) => {
+          <Marker
+            key={spot._id} // Assuming each spot object has a unique _id property
+            longitude={spot.longitude}
+            latitude={spot.latitude}
+          >
+            {/* Customize the pin here, you can use an image or custom SVG */}
+            <div>📍</div>
+          </Marker>;
+        })}
+      </MapGL>
     </MapContainer>
   );
 }
