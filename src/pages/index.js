@@ -13,6 +13,7 @@ const Title = styled.h1`
   letter-spacing: -0.3px;
   padding: 20px;
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,10 +27,12 @@ const Container = styled.ul`
   list-style-type: none;
   justify-items: center;
   margin: 20px;
+  overflow: scroll;
 `;
 
 const CategoryContainer = styled.div`
   position: relative;
+  height: 200px;
 `;
 
 export default function Home() {

@@ -8,7 +8,7 @@ const MapContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: 0;
   .attribution-control {
     display: none;
@@ -27,7 +27,6 @@ export default function SpotsMap() {
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
-  console.log(validSpots);
 
   return (
     <MapContainer>
@@ -36,6 +35,7 @@ export default function SpotsMap() {
         initialViewState={initialViewState}
         mapStyle="mapbox://styles/mapbox/dark-v10"
         attributionControl={false}
+        style={{ width: "100%", height: "100%" }}
       >
         {validSpots.map((spot) => {
           return (
@@ -43,7 +43,7 @@ export default function SpotsMap() {
               key={spot._id}
               longitude={spot.longitude}
               latitude={spot.latitude}
-              // anchor="bottom"
+              anchor="bottom"
             >
               {/* <div>📍</div> */}
               <img src="/pin.png" alt="Pin" />
