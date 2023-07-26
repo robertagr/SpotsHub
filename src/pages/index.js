@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
+import Login from "../../components/Login";
 
 const Title = styled.h1`
   display: flex;
@@ -12,6 +13,7 @@ const Title = styled.h1`
   letter-spacing: -0.3px;
   padding: 20px;
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,10 +27,12 @@ const Container = styled.ul`
   list-style-type: none;
   justify-items: center;
   margin: 20px;
+  overflow: scroll;
 `;
 
 const CategoryContainer = styled.div`
   position: relative;
+  height: 200px;
 `;
 
 export default function Home() {
@@ -53,6 +57,7 @@ export default function Home() {
   return (
     <Wrapper>
       <Title className="title">Restaurant Categories</Title>
+      <Login />
       <Container>
         {categories.map((category) => (
           <CategoryContainer key={category}>
