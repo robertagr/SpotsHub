@@ -7,9 +7,6 @@ const StyledIcons = styled.div`
 
   &:hover {
     color: #f2500a;
-    /* background-color: #ececec;
-    padding: 6px;
-    border-radius: 30px; */
   }
 
   &:active {
@@ -27,7 +24,7 @@ const NavBar = styled.nav`
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 10px; /* Adjust the value to control the spacing */
+  margin: 0 10px;
 `;
 
 export default function TopNavBar() {

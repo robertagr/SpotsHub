@@ -1,9 +1,7 @@
 import React from "react";
 
 export default function FilterTags({ selectedRestaurantTags }) {
-  const handleTagClick = (tag) => {
-    // Do something with the clicked tag, e.g., add it to the selectedTags state
-  };
+  const handleTagClick = (tag) => {};
   return (
     <div>
       {" "}

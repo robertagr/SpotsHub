@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MapGL, { Marker } from "react-map-gl";
+import Map, { Marker } from "react-map-gl";
 import { useSpotStore } from "../public/stores/spotStore";
 
 const MapContainer = styled.div`
@@ -23,28 +23,34 @@ const initialViewState = {
 
 export default function SpotsMap() {
   const { spots } = useSpotStore();
-  //   console.log(spots);
+
+  const validSpots = spots.filter(
+    (spot) => spot.longitude !== undefined && spot.latitude !== undefined
+  );
+  console.log(validSpots);
 
   return (
     <MapContainer>
-      <MapGL
+      <Map
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX}
-        width={600}
-        height={400}
         initialViewState={initialViewState}
-        mapStyle="mapbox://styles/mapbox/light-v11"
+        mapStyle="mapbox://styles/mapbox/dark-v10"
         attributionControl={false}
       >
-        {spots.map((spot) => {
-          <Marker
-            key={spot._id} // Assuming each spot object has a unique _id property
-            longitude={parseFloat(spot.longitude)}
-            latitude={parseFloat(spot.latitude)}
-          >
-            <div>📍</div>
-          </Marker>;
+        {validSpots.map((spot) => {
+          return (
+            <Marker
+              key={spot._id}
+              longitude={spot.longitude}
+              latitude={spot.latitude}
+              // anchor="bottom"
+            >
+              {/* <div>📍</div> */}
+              <img src="/pin.png" alt="Pin" />
+            </Marker>
+          );
         })}
-      </MapGL>
+      </Map>
     </MapContainer>
   );
 }
