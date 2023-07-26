@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
+import Login from "../../components/Login";
 
 const Title = styled.h1`
   display: flex;
@@ -53,6 +54,7 @@ export default function Home() {
   return (
     <Wrapper>
       <Title className="title">Restaurant Categories</Title>
+      <Login />
       <Container>
         {categories.map((category) => (
           <CategoryContainer key={category}>
