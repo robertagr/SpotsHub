@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Map, { Marker } from "react-map-gl";
+import Map, { Marker, Popup } from "react-map-gl";
 import { useSpotStore } from "../public/stores/spotStore";
+import { useState } from "react";
 
 const MapContainer = styled.div`
   position: relative;
@@ -23,10 +24,15 @@ const initialViewState = {
 
 export default function SpotsMap() {
   const { spots } = useSpotStore();
+  const [selectedSpot, setSelectedSpot] = useState(null);
 
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
+
+  const handleMarkerClick = (spot) => {
+    setSelectedSpot(spot);
+  };
 
   return (
     <MapContainer>
@@ -45,11 +51,29 @@ export default function SpotsMap() {
               latitude={spot.latitude}
               anchor="bottom"
             >
-              {/* <div>📍</div> */}
-              <img src="/pin.png" alt="Pin" />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleMarkerClick(spot);
+                }}
+              >
+                <img src="/pin.png" alt="Pin" width={30} height={30} />
+              </button>
             </Marker>
           );
         })}
+        {selectedSpot ? (
+          <Popup
+            key={selectedSpot.title}
+            latitude={selectedSpot.latitude}
+            longitude={selectedSpot.longitude}
+            anchor="bottom"
+            closeOnClick={false}
+            onClose={() => setSelectedSpot(null)}
+          >
+            <h2>{selectedSpot.title}</h2>
+          </Popup>
+        ) : null}
       </Map>
     </MapContainer>
   );
