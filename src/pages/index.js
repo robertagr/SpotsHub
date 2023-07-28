@@ -59,7 +59,6 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <Login />
       <Title className="title">Restaurant Categories</Title>
       <Container>
         {categories.map((category) => (
