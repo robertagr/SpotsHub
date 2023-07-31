@@ -5,6 +5,7 @@ import { useSpotStore } from "../public/stores/spotStore";
 import { useState } from "react";
 import { MdLocationPin } from "react-icons/md";
 import SearchBoxMap, { SmallBox } from "./SearchBoxMap";
+import Image from "next/image";
 
 const MapContainer = styled.div`
   position: relative;
@@ -125,7 +126,7 @@ export default function SpotsMap() {
             onClose={() => setSelectedSpot(null)}
           >
             <div className="popup-wrapper">
-              <img
+              <Image
                 src={selectedSpot.image}
                 alt={selectedSpot.title}
                 style={{
