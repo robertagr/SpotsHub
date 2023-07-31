@@ -129,7 +129,7 @@ export default function SpotsMap() {
                 src={selectedSpot.image}
                 alt={selectedSpot.title}
                 style={{
-                  width: "100%",
+                  width: 120,
                   height: "auto",
                   maxWidth: 110,
                   maxHeight: 110,

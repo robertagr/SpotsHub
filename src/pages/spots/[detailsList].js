@@ -55,9 +55,12 @@ export default function ListPage() {
   const CategoryContainer = styled.div`
     position: relative;
   `;
+  const DetailsListWrapper = styled.div`
+    overflow: auto;
+  `;
 
   return (
-    <div>
+    <DetailsListWrapper>
       <Title>{detailsList} </Title>
       <FilterTags selectedRestaurantTags={selectedRestaurantTags} />
       <Container>
@@ -75,6 +78,6 @@ export default function ListPage() {
           </CategoryContainer>
         ))}
       </Container>
-    </div>
+    </DetailsListWrapper>
   );
 }
