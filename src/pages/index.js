@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
-import Login from "../../components/Login";
+// import Login from "../../components/Login";
 import { signIn, SignOut, useSession } from "next-auth/react";
 
 const Title = styled.h1`

@@ -7,6 +7,7 @@ import GoogleProvider from "next-auth/providers/google";
 // import Providers from "next-auth/providers";
 
 export const authOptions = {
+  strategy: "database",
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
@@ -18,42 +19,42 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
-  callbacks: {
-    async signIn(user, account, profile) {
-      const email = user.email;
-      const name = user.name;
-      const image = user.image;
-      const provider = account.provider;
-      const providerId = profile.id;
+  // callbacks: {
+  //   async signIn(user, account, profile) {
+  //     const email = user.email;
+  //     const name = user.name;
+  //     const image = user.image;
+  //     const provider = account.provider;
+  //     const providerId = profile.id;
 
-      const existingUser = await User.findOne({ email });
+  //     const existingUser = await User.findOne({ email });
 
-      if (existingUser) {
-        existingUser.name = name;
-        existingUser.image = image;
-        existingUser.provider = provider;
-        existingUser.providerId = providerId;
-        await existingUser.save();
-        return Promise.resolve(true);
-      }
+  //     if (existingUser) {
+  //       existingUser.name = name;
+  //       existingUser.image = image;
+  //       existingUser.provider = provider;
+  //       existingUser.providerId = providerId;
+  //       await existingUser.save();
+  //       return Promise.resolve(true);
+  //     }
 
-      const newUser = await User.create({
-        name,
-        email,
-        image,
-        provider,
-        providerId,
-        favorites: [],
-      });
+  //     const newUser = await User.create({
+  //       name,
+  //       email,
+  //       image,
+  //       provider,
+  //       providerId,
+  //       favorites: [],
+  //     });
 
-      if (newUser) {
-        return Promise.resolve(true);
-      } else {
-        return Promise.resolve(false);
-      }
-    },
-  },
-  database: process.env.MONGODB_URI,
+  //     if (newUser) {
+  //       return Promise.resolve(true);
+  //     } else {
+  //       return Promise.resolve(false);
+  //     }
+  //   },
+  // },
+  // database: process.env.MONGODB_URI,
 };
 
 export default NextAuth(authOptions);
