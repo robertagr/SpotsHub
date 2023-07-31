@@ -5,20 +5,23 @@ const { Schema } = mongoose;
 const spotSchema = new Schema({
   title: {
     type: String,
-    // required: true,
   },
   image: {
     type: String,
-    // required: true,
   },
   mapURL: {
     type: String,
-    // required: true,
   },
   description: {
     type: String,
-    // required: true,
   },
+  latitude: {
+    type: Number,
+  },
+  longitude: {
+    type: Number,
+  },
+
   tags: { type: [Schema.Types.ObjectId], ref: "Tags" },
 
   restaurantCategory: { type: String },
