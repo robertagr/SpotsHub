@@ -1,29 +1,17 @@
-import React from "react";
+// import UserProfile from "../../components/UserProfile";
+import FavoriteButton from "../../../components/FavoriteButton";
 import Login from "../../../components/Login";
-import { getSession } from "next-auth/react";
+import { useSpotStore } from "../../../public/stores/spotStore";
 
-export default function Profile({ session }) {
+export default function ProfilePage() {
+  const { favoriteSpots } = useSpotStore();
+
   return (
     <div>
-      {" "}
-      <Login />{" "}
+      <Login />
+      {/* <UserProfile /> */}
+      <FavoriteButton favoriteSpots={favoriteSpots} />
+      {/* Altri componenti del profilo, se necessario */}
     </div>
   );
 }
-
-// export async function getServerSideProps(context) {
-//   const session = await getSession(context);
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/profile",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: { session },
-//   };
-// }

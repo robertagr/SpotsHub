@@ -57,8 +57,6 @@ export default function Home() {
     ),
   ];
 
-  console.log(data);
-
   return (
     <Wrapper>
       <Title className="title">Restaurant Categories</Title>
