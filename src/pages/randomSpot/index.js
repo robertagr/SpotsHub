@@ -42,7 +42,7 @@ export default function RandomSpot() {
       {isClient ? (
         <Random>
           <p>
-            Too many cool places and don't know where to go? Just click the
+            Too many cool places and do not know where to go? Just click the
             button below, and let the button decide for you!
           </p>
 
