@@ -4,6 +4,7 @@ import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
 import Login from "../../components/Login";
+import { signIn, SignOut, useSession } from "next-auth/react";
 
 const Title = styled.h1`
   display: flex;
@@ -36,6 +37,8 @@ const CategoryContainer = styled.div`
 `;
 
 export default function Home() {
+  const { data: session } = useSession();
+
   const { data, error, isLoading } = useSWR("/api/restaurants", {
     fallbackData: [],
   });
@@ -57,7 +60,6 @@ export default function Home() {
   return (
     <Wrapper>
       <Title className="title">Restaurant Categories</Title>
-      <Login />
       <Container>
         {categories.map((category) => (
           <CategoryContainer key={category}>

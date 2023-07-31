@@ -4,6 +4,7 @@ import Map, { Marker, Popup } from "react-map-gl";
 import { useSpotStore } from "../public/stores/spotStore";
 import { useState } from "react";
 import { MdLocationPin } from "react-icons/md";
+import SearchBoxMap, { SmallBox } from "./SearchBoxMap";
 
 const MapContainer = styled.div`
   position: relative;
@@ -42,10 +43,10 @@ const StyledPopup = styled(Popup)`
     border-radius: 50%;
     cursor: pointer;
 
-    background-color: #fcbf8d;
-
+    color: white;
+    background-color: #ff9875;
     &:hover {
-      background-color: #f2500a;
+      background-color: #fcbf8d;
     }
   }
 `;
@@ -57,15 +58,28 @@ const initialViewState = {
 };
 
 export default function SpotsMap() {
-  const { spots } = useSpotStore();
+  const { spots, searchQuery, setSearchQuery, searchedSpots } = useSpotStore();
   const [selectedSpot, setSelectedSpot] = useState(null);
 
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
 
+  // const filteredSpots = spots.filter((spot) => {
+  //   const tags = spot.tags || [];
+  //   return (
+  //     tags.some((tag) =>
+  //       tag.toLowerCase().includes(searchQuery.toLowerCase())
+  //     ) || spot.title.toLowerCase().includes(searchQuery.toLowerCase())
+  //   );
+  // });
+
   const handleMarkerClick = (spot) => {
     setSelectedSpot(spot);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
   return (
@@ -77,6 +91,11 @@ export default function SpotsMap() {
         attributionControl={false}
         style={{ width: "100%", height: "100%" }}
       >
+        <SearchBoxMap
+          value={searchQuery}
+          onChange={handleSearchChange}
+          placeholder="Search..."
+        />
         {validSpots.map((spot) => {
           return (
             <Marker
@@ -120,6 +139,19 @@ export default function SpotsMap() {
             </div>
           </StyledPopup>
         ) : null}
+
+        {searchQuery && (
+          <SmallBox>
+            {searchedSpots.map((spot) => (
+              <div key={spot._id}>
+                <h3>{spot.title}</h3>
+                {spot.tags && spot.tags.length > 0 && (
+                  <p>{spot.tags.join(", ")}</p>
+                )}
+              </div>
+            ))}
+          </SmallBox>
+        )}
       </Map>
     </MapContainer>
   );

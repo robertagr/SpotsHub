@@ -22,7 +22,7 @@ export default function Footer() {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="">Profile</Link>
+        <Link href="/profile">Profile</Link>
       </li>
       <li>
         <Link href="/randomSpot">Game</Link>

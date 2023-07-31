@@ -7,6 +7,8 @@ export const useSpotStore = create(
       spots: [],
       favoriteSpots: [],
       selectedTags: [],
+      searchQuery: "",
+      searchedSpots: [],
 
       setData: (data) => set((state) => ({ spots: data })),
       toggleFavorite: (spotsId) =>
@@ -16,8 +18,20 @@ export const useSpotStore = create(
             : [...state.favoriteSpots, spotsId],
         })),
       setSelectedTags: (tags) => set({ selectedTags: tags }),
+      setSearchQuery: (query) => {
+        set({ searchQuery: query });
+        set((state) => ({
+          searchedSpots: state.spots.filter((spot) => {
+            const tags = spot.tags || [];
+            return (
+              tags.some((tag) =>
+                tag.toLowerCase().includes(query.toLowerCase())
+              ) || spot.title.toLowerCase().includes(query.toLowerCase())
+            );
+          }),
+        }));
+      },
     }),
-
     {
       name: "spot",
     }
