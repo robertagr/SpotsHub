@@ -6,6 +6,7 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import useSWR from "swr";
 import FavoriteButton from "../../../../components/FavoriteButton";
 import styles from "../../index.module.css";
+import FilterTags from "../../../../components/FilterTags";
 
 export default function Restaurant({ favoriteSpots }) {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function Restaurant({ favoriteSpots }) {
       <div>
         <Link href={selectedRestaurant.mapURL}>Location</Link>
       </div>
+      <div>{selectedRestaurant.tags}</div>
       <div className={`${styles.heartButton}`}>
         <FavoriteButton
           spotId={selectedRestaurant._id}

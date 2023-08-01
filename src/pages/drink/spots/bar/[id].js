@@ -21,18 +21,6 @@ export default function Bar({ favoriteSpots }) {
     return <div>Loading...</div>;
   }
 
-  // const HeartButton = styled.button`
-  //   border: none;
-  //   background-color: transparent;
-  //   cursor: pointer;
-  //   outline: none;
-  // `;
-
-  // const HeartIcon = styled(isFavorite ? VscHeartFilled : VscHeart)`
-  //   font-size: 30px;
-  //   color: ${(props) => (props.isFavorite ? "red" : "black")};
-  // `;
-
   return (
     <div className={`${styles.container}`}>
       <h1 className={`${styles.title}`}>{selectedBar.title}</h1>

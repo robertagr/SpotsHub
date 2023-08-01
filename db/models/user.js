@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
+  _id: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -8,25 +14,17 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   image: {
     type: String,
-  },
-  provider: {
-    type: String,
     required: true,
   },
-  providerId: {
-    type: String,
-    required: true,
+  emailVerified: {
+    type: Date,
+    default: null,
   },
-  favorites: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Spot",
-    },
-  ],
 });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
+export default User;

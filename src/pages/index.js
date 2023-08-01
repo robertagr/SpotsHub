@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
+import "./index.module.css"
 // import Login from "../../components/Login";
 import { signIn, SignOut, useSession } from "next-auth/react";
 

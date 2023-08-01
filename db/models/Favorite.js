@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const FavoriteSchema = new mongoose.Schema({
-  username: {
-    type: String,
-  },
-  spot: {
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",  },
+  spotId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Spot",
   },
