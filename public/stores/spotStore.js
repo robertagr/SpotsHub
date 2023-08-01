@@ -5,18 +5,18 @@ export const useSpotStore = create(
   persist(
     (set, get) => ({
       spots: [],
-      favoriteSpots: [],
+      // favoriteSpots: [],
       selectedTags: [],
       searchQuery: "",
       searchedSpots: [],
 
       setData: (data) => set((state) => ({ spots: data })),
-      toggleFavorite: (spotsId) =>
-        set((state) => ({
-          favoriteSpots: state.favoriteSpots.includes(spotsId)
-            ? state.favoriteSpots.filter((id) => id !== spotsId)
-            : [...state.favoriteSpots, spotsId],
-        })),
+      // toggleFavorite: (spotsId) =>
+      //   set((state) => ({
+      //     favoriteSpots: state.favoriteSpots.includes(spotsId)
+      //       ? state.favoriteSpots.filter((id) => id !== spotsId)
+      //       : [...state.favoriteSpots, spotsId],
+      //   })),
       setSelectedTags: (tags) => set({ selectedTags: tags }),
       setSearchQuery: (query) => {
         set({ searchQuery: query });
