@@ -25,32 +25,52 @@ export default function ProfilePage()  {
   const { data: sessionData } = useSession();
   console.log(sessionData);
   
-  const { data, error, isLoading } = useSWR(`/api/favorites/${sessionData.user._id}`, {
-      fallbackData: [],
-    });
-   
+
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Fetch data only if sessionData is available
+    if (sessionData && sessionData.user && sessionData.user._id) {
+      const fetchData = async () => {
+        try {
+          const res = await fetch(`/api/favorites/${sessionData.user._id}`);
+          if (!res.ok) {
+            throw new Error("Error fetching favorite spots.");
+          }
+          const favoriteData = await res.json();
+          setData(favoriteData);
+          setIsLoading(false);
+        } catch (error) {
+          setError(error);
+          setIsLoading(false);
+        }
+      };
+      fetchData();
+    }
+  }, [sessionData]);
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return null;
   }
 
   if (error) {
-    return <div>Error fetching favorite spots: {error}</div>;
+    return <div>Error fetching favorite spots: {error.message}</div>;
   }
-
-
-  const handleToggleFavorite = async (spotId) => {
-    try {
-      const res = await fetch(`/api/favorites/spotId`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ spotId, userId: sessionData.user._id }),
-      });
-    } catch (error) {
-      console.error("Error toggling favorite spot:", error);
-    }
-  };
+//   const handleToggleFavorite = async (spotId) => {
+//     try {
+//       const res = await fetch(`/api/favorites/spotId`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ spotId, userId: sessionData.user._id }),
+//       });
+//     } catch (error) {
+//       console.error("Error toggling favorite spot:", error);
+//     }
+//   };
  
 
 console.log(data)

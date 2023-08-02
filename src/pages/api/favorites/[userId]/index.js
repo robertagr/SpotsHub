@@ -31,7 +31,7 @@ export default async function handler(request, response) {
      // Connect to the database
     //  await dbConnect();
 
-      const favorites = await getFavoritesByUserId(request.query.userId)
+    const favorites = await getFavoritesByUserId(request.query.userId)
      console.log(favorites)
 
       return response.status(200).json(favorites);

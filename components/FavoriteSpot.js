@@ -22,23 +22,6 @@ export default function  FavoriteSpot({ spotId, isFavorite, onToggleFavorite }) 
   const { data: sessionData } = useSession();
   const [favoriteSpots, setFavoriteSpots] = useState([]);
 
-//   const fetchFavoriteSpots = async () => {
-//     try {
-//       const res = await fetch(`/api/favorites/${sessionData?.user._id}`);
-//       if (res.ok) {
-//         const favoriteSpots = await res.json();
-//         setFavoriteSpots(favoriteSpots);
-//       } else {
-//         throw new Error("Error fetching favorite spots.");
-//       }
-//     } catch (error) {
-//       console.error("Error fetching favorite spots:", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchFavoriteSpots(); // Fetch favorite spots when the component mounts
-//   }, []); // Re-fetch favorite spots whenever the session data changes
 
   // Function to handle the click on the favorite button
   const handleFavoriteClick = async () => {
