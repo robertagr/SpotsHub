@@ -21,9 +21,9 @@ list-style-type: none;
 margin: 20px;
 `;
 
-export default function ProfilePage()  {
+export default function ProfilePage({spotId})  {
   const { data: sessionData } = useSession();
-  console.log(sessionData);
+//   console.log(sessionData);
   
 
   const [data, setData] = useState([]);
@@ -92,7 +92,10 @@ return (
             <div key={spot._id}>
               {spot.spotId.title}
               <Image src={spot.spotId.image} alt={spot.spotId.title} width={220} height={130} />
-              <FavoriteButton />
+              <FavoriteButton 
+              spotId={spot.spotId._id} 
+            isFavorite={spot.isFavorite}
+           />
             </div>
           );
         })}
