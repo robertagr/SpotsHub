@@ -21,10 +21,8 @@ const HeartIcon = styled(({ isFavorite, ...props }) =>
 const FavoriteButton = ({ spotId }) => {
   const { data: sessionData } = useSession();
   const [isFavorite, setIsFavorite] = useState(false);
-console.log(spotId);
-console.log(sessionData)
-
-
+  console.log(spotId);
+  console.log(sessionData)
 
   // Function to handle the click on the favorite button
   const handleFavoriteClick = async () => {
@@ -40,10 +38,9 @@ console.log(sessionData)
 
 
       const data = res.json()
-
       console.log(await data)
 
-      
+
       if (res.ok) {
         setIsFavorite((prevIsFavorite) => !prevIsFavorite);
       }
