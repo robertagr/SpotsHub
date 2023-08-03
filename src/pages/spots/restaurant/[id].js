@@ -8,7 +8,7 @@ import FavoriteButton from "../../../../components/FavoriteButton";
 import styles from "../../index.module.css";
 import FilterTags from "../../../../components/FilterTags";
 
-export default function Restaurant({ favoriteSpots }) {
+export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
   const router = useRouter();
   const { id } = router.query;
   const { data: selectedRestaurant } = useSWR(`/api/restaurants/${id}`);
@@ -40,9 +40,11 @@ export default function Restaurant({ favoriteSpots }) {
         <FavoriteButton
           spotId={selectedRestaurant._id}
           favoriteSpots={favoriteSpots}
+          onFavoriteChange={onFavoriteChange}
         />
       </div>
       <p>{selectedRestaurant.description}</p>
+      
       <Link href={`/spots/${selectedRestaurant.restaurantCategory}`}>
         <div className={`${styles.styledIcons}`}>
           <IoArrowBackCircleOutline

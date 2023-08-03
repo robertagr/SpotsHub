@@ -1,16 +1,13 @@
-// import UserProfile from "../../components/UserProfile";
-import FavoriteButton from "../../../components/FavoriteButton";
-import Login from "../../../components/Login";
-import { useSpotStore } from "../../../public/stores/spotStore";
+// import FavoriteButton from "../../../components/FavoriteButton";
+import LoginButton from "../../../components/LoginButton";
+import Profile from "../../../components/Profile";
 
 export default function ProfilePage({ favoriteSpots}) {
 console.log(favoriteSpots);
   return (
     <div>
-      <Login />
-      {/* <UserProfile /> */}
-      {/* <FavoriteButton favoriteSpots={favoriteSpots} /> */}
-      {/* Altri componenti del profilo, se necessario */}
+      <LoginButton />
+      <Profile/> 
     </div>
   );
 }
