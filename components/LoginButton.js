@@ -3,15 +3,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function LoginButton() {
   const { data: session, error, isLoading } = useSession();
 
-  // if (!session || error || isLoading) {
-  //   return null;
-  // }
-  console.log("session", session);
-  // if (session) {
-    // try to find user by name
-    // if user does not exist, create it
-    // store user inside zustand/global state
-  // }
+
+  // console.log("session", session);
+
 
   return (
     <div>
