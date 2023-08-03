@@ -30,8 +30,6 @@ export default async function handler(request, response) {
   }
 
 
-
-
 if (method === "DELETE") {
   try {
     const { spotId } = request.body;

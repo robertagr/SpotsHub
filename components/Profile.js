@@ -21,11 +21,9 @@ list-style-type: none;
 margin: 20px;
 `;
 
-export default function ProfilePage({spotId})  {
+export default function ProfilePage()  {
   const { data: sessionData } = useSession();
 //   console.log(sessionData);
-  
-
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -58,44 +56,45 @@ export default function ProfilePage({spotId})  {
   if (error) {
     return <div>Error fetching favorite spots: {error.message}</div>;
   }
-//   const handleToggleFavorite = async (spotId) => {
-//     try {
-//       const res = await fetch(`/api/favorites/spotId`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ spotId, userId: sessionData.user._id }),
-//       });
-//     } catch (error) {
-//       console.error("Error toggling favorite spot:", error);
-//     }
-//   };
- 
+
+  const handleFavoriteChange = (spotId, isFavorite) => {
+    // Update the data state to reflect the favorite status change
+    setData((prevData) => {
+      // Remove the spot from data when it's marked as not favorite (isFavorite === false)
+      if (!isFavorite) {
+        return prevData.filter((spot) => spot.spotId?._id !== spotId);
+      }
+      return prevData;
+    });
+  };
 
 console.log(data)
 
-const uniqueSpotIds = [];
   
+
 return (
-  <FavWrapper>
-    <Container>
-    <h2>My Favorite Spots</h2>
+    <FavWrapper>
+      <Container>
+        <h2>My Favorite Spots</h2>
         {data.map((spot) => {
-          if (!spot.spotId?._id || uniqueSpotIds.includes(spot.spotId._id)) {
-            // If spotId doesn't exist or is already in the array, skip rendering
+          if (!spot.spotId?._id) {
+            // If spotId doesn't exist, skip rendering
             return null;
           }
-          // If not, add it to the array and render the spot
-          uniqueSpotIds.push(spot.spotId._id);
           return (
             <div key={spot._id}>
               {spot.spotId.title}
-              <Image src={spot.spotId.image} alt={spot.spotId.title} width={220} height={130} />
-              <FavoriteButton 
-              spotId={spot.spotId._id} 
-            isFavorite={spot.isFavorite}
-           />
+              <Image
+                src={spot.spotId.image}
+                alt={spot.spotId.title}
+                width={220}
+                height={130}
+              />
+              <FavoriteButton
+                spotId={spot.spotId._id}
+                isFavorite={spot.isFavorite}
+                onFavoriteChange={handleFavoriteChange}
+              />
             </div>
           );
         })}

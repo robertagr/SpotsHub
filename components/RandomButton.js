@@ -58,7 +58,7 @@ export default function RandomSpots() {
       <Button onClick={getRandomSpot}>Click me!</Button>
       {randomSpot && (
         <section>
-          <a key={randomSpot._id}>
+          <div key={randomSpot._id}>
             <Link href={`/drink/spots/bar/${randomSpot.title}`}>
               <h2>{randomSpot.title}</h2>
               <Image
@@ -68,7 +68,7 @@ export default function RandomSpots() {
                 height={280}
               />
             </Link>
-          </a>
+          </div>
         </section>
       )}
     </ButtonContainer>

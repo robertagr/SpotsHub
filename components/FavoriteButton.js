@@ -18,7 +18,7 @@ const HeartIcon = styled(({ isFavorite, ...props }) =>
   color: ${(props) => (props.isFavorite ? "red" : "black")};
 `;
   
-    const FavoriteButton = ({ spotId }) => {
+    const FavoriteButton = ({ spotId, onFavoriteChange  }) => {
       const { data: sessionData } = useSession();
       const [isFavorite, setIsFavorite] = useState(false);
     
@@ -32,11 +32,14 @@ const HeartIcon = styled(({ isFavorite, ...props }) =>
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ spotId }),
+              body: JSON.stringify({ spotId,  userId: sessionData.user._id  }),
             });
     
             if (res.ok) {
               setIsFavorite(false);
+
+              onFavoriteChange?.(spotId, false);
+
             }
           } else {
             // Make a POST request to add the spot to favorites
@@ -50,6 +53,8 @@ const HeartIcon = styled(({ isFavorite, ...props }) =>
     
             if (res.ok) {
               setIsFavorite(true);
+              onFavoriteChange?.(spotId, true);
+
             }
           }
         } catch (error) {

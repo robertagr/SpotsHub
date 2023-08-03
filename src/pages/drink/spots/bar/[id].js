@@ -7,7 +7,7 @@ import FavoriteButton from "../../../../../components/FavoriteButton";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import styles from "../../../index.module.css";
 
-export default function Bar({ favoriteSpots }) {
+export default function Bar({ favoriteSpots, onFavoriteChange }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -38,6 +38,7 @@ export default function Bar({ favoriteSpots }) {
         <FavoriteButton
           spotId={selectedBar._id}
           favoriteSpots={favoriteSpots}
+          onFavoriteChange={onFavoriteChange}
         />
       </div>
       <p>{selectedBar.description}</p>
