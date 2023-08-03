@@ -64,6 +64,9 @@ const HeartIcon = styled(({ isFavorite, ...props }) =>
     
       // Fetch favorite status on component mount
       useEffect(() => {
+        if (!sessionData?.user?._id){
+          return
+        }
         const fetchFavoriteStatus = async () => {
           try {
             const res = await fetch(`/api/favorites/${sessionData.user._id}`);

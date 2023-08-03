@@ -1,8 +1,4 @@
-import dbConnect from "../../../../../db/models/connect";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../auth/[...nextauth]";
 import { toggleFavorite } from "../../../../../lib/db";
-import { getFavoritesByUserId, addFavorite } from "../../../../../lib/db";
 
 
 export default async function handler(request, response) {

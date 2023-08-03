@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Map, { Marker, Popup } from "react-map-gl";
 import { useSpotStore } from "../public/stores/spotStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdLocationPin } from "react-icons/md";
-import SearchBoxMap, { SmallBox } from "./SearchBoxMap";
+import SearchBoxMap from "./SearchBoxMap";
 import Image from "next/image";
+import Link from "next/link";
 
 const MapContainer = styled.div`
   position: relative;
@@ -18,15 +19,12 @@ const MapContainer = styled.div`
     display: none;
   }
 `;
-
 const StyledMarker = styled.div`
-  color: #f2500a;
-
+  color: #F2500A;
   &:hover {
-    color: #fcbf8d;
+    color: #FCBF8D;
   }
 `;
-
 const StyledPopup = styled(Popup)`
   .mapboxgl-popup-content {
     border-radius: 25px;
@@ -34,7 +32,6 @@ const StyledPopup = styled(Popup)`
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-
   .mapboxgl-popup-close-button {
     position: absolute;
     top: 14px;
@@ -43,14 +40,14 @@ const StyledPopup = styled(Popup)`
     background-color: #fff;
     border-radius: 50%;
     cursor: pointer;
-
     color: white;
-    background-color: #ff9875;
+    background-color: #FF9875;
     &:hover {
-      background-color: #fcbf8d;
+      background-color: #FCBF8D;
     }
   }
 `;
+
 
 const initialViewState = {
   longitude: 13.381777,
@@ -58,14 +55,13 @@ const initialViewState = {
   zoom: 10,
 };
 
+
 export default function SpotsMap() {
   const { spots, searchQuery, setSearchQuery, searchedSpots } = useSpotStore();
   const [selectedSpot, setSelectedSpot] = useState(null);
-
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
-
   // const filteredSpots = spots.filter((spot) => {
   //   const tags = spot.tags || [];
   //   return (
@@ -75,14 +71,26 @@ export default function SpotsMap() {
   //   );
   // });
 
+  useEffect(() => {
+    if (searchedSpots.length === 1) {
+      setSelectedSpot(searchedSpots[0]);
+    }
+  }, [searchedSpots]);
+
+
   const handleMarkerClick = (spot) => {
     setSelectedSpot(spot);
   };
-
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
+  const handleCancelSearch = () => {
+    setSearchQuery(""); // Clear the search query
+    setSelectedSpot(null); // Clear the selected spot to close the popup
+  };
+
+  
   return (
     <MapContainer>
       <Map
@@ -95,6 +103,7 @@ export default function SpotsMap() {
         <SearchBoxMap
           value={searchQuery}
           onChange={handleSearchChange}
+          onCancel={handleCancelSearch} 
           placeholder="Search..."
         />
         {validSpots.map((spot) => {
@@ -116,7 +125,8 @@ export default function SpotsMap() {
             </Marker>
           );
         })}
-        {selectedSpot ? (
+        {selectedSpot ?
+                  (
           <StyledPopup
             key={selectedSpot.title}
             latitude={selectedSpot.latitude}
@@ -133,23 +143,16 @@ export default function SpotsMap() {
                 height={130}
                 style={{ maxWidth: 110, maxHeight: 110 }}
               />
-              <h2>{selectedSpot.title}</h2>
+              <h3>{selectedSpot.title}</h3>
+                    {/* <Link href={`/spots/${selectedSpot.title}`}>
+              <h2>{selectedSpot.image}</h2>
+              <p>{selectedSpot.description}</p>
+
+              </Link> */}
+
             </div>
           </StyledPopup>
         ) : null}
-
-        {searchQuery && (
-          <SmallBox>
-            {searchedSpots.map((spot) => (
-              <div key={spot._id}>
-                <h3>{spot.title}</h3>
-                {spot.tags && spot.tags.length > 0 && (
-                  <p>{spot.tags.join(", ")}</p>
-                )}
-              </div>
-            ))}
-          </SmallBox>
-        )}
       </Map>
     </MapContainer>
   );

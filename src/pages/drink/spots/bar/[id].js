@@ -7,15 +7,11 @@ import FavoriteButton from "../../../../../components/FavoriteButton";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import styles from "../../../index.module.css";
 
-export default function Bar({ favoriteSpots, onFavoriteChange }) {
+export default function Bar() {
   const router = useRouter();
   const { id } = router.query;
 
   const { data: selectedBar } = useSWR(`/api/restaurants/${id}`);
-
-  // const selectedBar = spots?.find((bar) => bar.title === id);
-
-  // const isFavorite = favoriteSpots.find((rest) => rest === selectedBar?._id);
 
   if (!selectedBar) {
     return <div>Loading...</div>;
@@ -37,8 +33,8 @@ export default function Bar({ favoriteSpots, onFavoriteChange }) {
       <div className={`${styles.heartButton}`}>
         <FavoriteButton
           spotId={selectedBar._id}
-          favoriteSpots={favoriteSpots}
-          onFavoriteChange={onFavoriteChange}
+          // favoriteSpots={favoriteSpots}
+          // onFavoriteChange={onFavoriteChange}
         />
       </div>
       <p>{selectedBar.description}</p>
