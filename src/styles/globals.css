@@ -14,15 +14,16 @@ main {
   flex-direction: column;
   justify-content: center;
   font-family: system-ui;
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   height: 600px;
 }
 
 .div-main {
   border-style: solid;
-  border-color: rgb(183, 180, 178);
+  border-color: rgb(233, 232, 232);
   border-radius: 10px;
   border-width: 1px;
+  background: #fbfafa;
 }
 
 li {

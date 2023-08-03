@@ -1,11 +1,5 @@
-import dbConnect from "../../../../../db/models/connect";
-import { getServerSession } from "next-auth/next";
-import { GetServerSideProps } from "next";
-import { authOptions } from "../../auth/[...nextauth]";
-import { toggleFavorite } from "../../../../../lib/db";
-import { getFavoritesByUserId, addFavorite, removeFavorite } from "../../../../../lib/db";
+import { getFavoritesByUserId } from "../../../../../lib/db";
 import Favorite from "../../../../../db/models/Favorite";
-// import User from "../../../../../db/models/User";
 
 export default async function handler(request, response) {
 
@@ -14,7 +8,7 @@ export default async function handler(request, response) {
 
   // console.log(request)
 
-  console.log("USERID", userId)
+  // console.log("USERID", userId)
 
   if (method === "GET") {
           try {
@@ -37,6 +31,8 @@ if (method === "DELETE") {
       userId: request.query.userId,
       spotId: spotId,
     });
+
+
     if (!favorite) {
       return response.status(404).json({ error: "Favorite not found" });
     }

@@ -68,7 +68,7 @@ export default function ProfilePage()  {
     });
   };
 
-console.log(data)
+// console.log(data)
 
   
 
