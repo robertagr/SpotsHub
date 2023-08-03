@@ -8,16 +8,11 @@ import FavoriteButton from "../../../../components/FavoriteButton";
 import styles from "../../index.module.css";
 import FilterTags from "../../../../components/FilterTags";
 
-export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
+export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
   const { data: selectedRestaurant } = useSWR(`/api/restaurants/${id}`);
 
-  // const { spots } = useSpotStore();
-
-  // const selectedRestaurant = spots?.find(
-  //   (restaurant) => restaurant.title === id
-  // );
 
   if (!selectedRestaurant) {
     return <div>Loading...</div>;
@@ -39,8 +34,8 @@ export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
       <div className={`${styles.heartButton}`}>
         <FavoriteButton
           spotId={selectedRestaurant._id}
-          favoriteSpots={favoriteSpots}
-          onFavoriteChange={onFavoriteChange}
+          // favoriteSpots={favoriteSpots}
+          // onFavoriteChange={onFavoriteChange}
         />
       </div>
       <p>{selectedRestaurant.description}</p>
