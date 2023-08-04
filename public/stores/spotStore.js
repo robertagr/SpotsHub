@@ -1,16 +1,22 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+const arrayContainsString = (array, string) => {
+  console.log({ array, string });
+  const lowercaseString = string.toLowerCase();
+  return array.some((item) => item.toLowerCase() === lowercaseString);
+};
+
 export const useSpotStore = create(
   persist(
     (set, get) => ({
       spots: [],
-      selectedTags: [],
+      // selectedTags: [],
       searchQuery: "",
       searchedSpots: [],
 
       setData: (data) => set((state) => ({ spots: data })),
-      setSelectedTags: (tags) => set({ selectedTags: tags }),
+      // setSelectedTags: (tags) => set({ selectedTags: tags }),
       setSearchQuery: (query) => {
         set({ searchQuery: query });
         set((state) => ({
@@ -19,15 +25,13 @@ export const useSpotStore = create(
             return (
               spot.title.toLowerCase() === lowercaseQuery ||
               // (spot.tags.includes(lowercaseQuery))
-              (spot.tags.includes(lowercaseQuery))
-              
-              // spot.tags.forEach((tag) => 
+              arrayContainsString(spot.tags, query)
+              // spot.tags.forEach((tag) =>
               //   tag.toLowerCase() === lowercaseQuery)
 
               // }));
               // spot.tags.map((tag) => tag.toLowerCase() === lowercaseQuery)
-
-            )
+            );
           }),
         }));
       },

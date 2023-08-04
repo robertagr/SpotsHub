@@ -18,7 +18,7 @@ const StyledTags = styled.div`
 `;
 
 const Tag = styled.span`
-  font-size: 14px; 
+  font-size: 12px; 
   padding: 3px 8px; 
   border: 1px solid black;
   border-radius: 5px;

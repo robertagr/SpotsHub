@@ -20,9 +20,9 @@ const MapContainer = styled.div`
   }
 `;
 const StyledMarker = styled.div`
-  color: #F2500A;
+  color: #f2500a;
   &:hover {
-    color: #FCBF8D;
+    color: #fcbf8d;
   }
 `;
 const StyledPopup = styled(Popup)`
@@ -41,13 +41,12 @@ const StyledPopup = styled(Popup)`
     border-radius: 50%;
     cursor: pointer;
     color: white;
-    background-color: #FF9875;
+    background-color: #ff9875;
     &:hover {
-      background-color: #FCBF8D;
+      background-color: #fcbf8d;
     }
   }
 `;
-
 
 const initialViewState = {
   longitude: 13.381777,
@@ -55,35 +54,24 @@ const initialViewState = {
   zoom: 10,
 };
 
-
 export default function SpotsMap() {
   const { spots, searchQuery, setSearchQuery, searchedSpots } = useSpotStore();
-  const [selectedSpot, setSelectedSpot] = useState(null);
+  const [selectedSpots, setSelectedSpots] = useState([]);
 
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
 
-  console.log('VALID SP', validSpots);
-
-  // const filteredSpots = spots.filter((spot) => {
-  //   const tags = spot.tags || [];
-  //   return (
-  //     tags.some((tag) =>
-  //       tag.toLowerCase().includes(searchQuery.toLowerCase())
-  //     ) || spot.title.toLowerCase().includes(searchQuery.toLowerCase())
-  //   );
-  // });
+  console.log("VALID SP", validSpots);
 
   useEffect(() => {
-    if (searchedSpots.length === 1) {
-      setSelectedSpot(searchedSpots[0]);
+    if (searchedSpots.length >= 0) {
+      setSelectedSpots(searchedSpots);
     }
   }, [searchedSpots]);
 
-
   const handleMarkerClick = (spot) => {
-    setSelectedSpot(spot);
+    setSelectedSpots([spot]);
   };
 
   const handleSearchChange = (event) => {
@@ -92,9 +80,10 @@ export default function SpotsMap() {
 
   const handleCancelSearch = () => {
     setSearchQuery(""); // Clear the search query
-    setSelectedSpot(null); // Clear the selected spot to close the popup
+    setSelectedSpots([]); // Clear the selected spot to close the popup
   };
 
+  console.log({ searchedSpots, selectedSpots });
 
   return (
     <MapContainer>
@@ -108,7 +97,7 @@ export default function SpotsMap() {
         <SearchBoxMap
           value={searchQuery}
           onChange={handleSearchChange}
-          onCancel={handleCancelSearch} 
+          onCancel={handleCancelSearch}
           placeholder="Search..."
         />
         {validSpots.map((spot) => {
@@ -130,31 +119,30 @@ export default function SpotsMap() {
             </Marker>
           );
         })}
-        {selectedSpot ?
-                  (
-          <StyledPopup
-            key={selectedSpot.title}
-            latitude={selectedSpot.latitude}
-            longitude={selectedSpot.longitude}
-            anchor="bottom"
-            closeOnClick={false}
-            onClose={() => setSelectedSpot(null)}
-          >
-            <div className="popup-wrapper">
-              <Link href={`/drink/spots/bar/${selectedSpot.title}`}>
-              <Image
-                src={selectedSpot.image}
-                alt={selectedSpot.title}
-                width={130}
-                height={130}
-                style={{ maxWidth: 110, maxHeight: 110 }}
-              />
-              <h3>{selectedSpot.title}</h3>
-              </Link>
-
-            </div>
-          </StyledPopup>
-        ) : null}
+        {selectedSpots.map((selectedSpot) => {
+          return (
+            <StyledPopup
+              key={selectedSpot.title}
+              latitude={selectedSpot.latitude}
+              longitude={selectedSpot.longitude}
+              anchor="bottom"
+              closeOnClick={false}
+            >
+              <div className="popup-wrapper">
+                <Link href={`/drink/spots/bar/${selectedSpot.title}`}>
+                  <Image
+                    src={selectedSpot.image}
+                    alt={selectedSpot.title}
+                    width={130}
+                    height={130}
+                    style={{ maxWidth: 110, maxHeight: 110 }}
+                  />
+                  <h3>{selectedSpot.title}</h3>
+                </Link>
+              </div>
+            </StyledPopup>
+          );
+        })}
       </Map>
     </MapContainer>
   );

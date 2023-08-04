@@ -4,7 +4,6 @@ import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
 import "./index.module.css"
-// import Login from "../../components/Login";
 import { signIn, SignOut, useSession } from "next-auth/react";
 
 
@@ -50,8 +49,16 @@ export default function Home() {
     return null;
   }
 
+  if (!session) {
+    return <>
+    <div>Please Log In</div>
+    <button onClick={() => signIn()}>Sign in </button>
+    </>;
+  } 
+
   // setData(data);
   // console.log("data", data);
+
 
 
   const categories = [
