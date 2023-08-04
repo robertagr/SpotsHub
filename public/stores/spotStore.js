@@ -18,8 +18,16 @@ export const useSpotStore = create(
             const lowercaseQuery = query.toLowerCase();
             return (
               spot.title.toLowerCase() === lowercaseQuery ||
-              (spot.tags && spot.tags.some(tag => tag.toLowerCase().includes (lowercaseQuery)))
-            );
+              // (spot.tags.includes(lowercaseQuery))
+              (spot.tags.includes(lowercaseQuery))
+              
+              // spot.tags.forEach((tag) => 
+              //   tag.toLowerCase() === lowercaseQuery)
+
+              // }));
+              // spot.tags.map((tag) => tag.toLowerCase() === lowercaseQuery)
+
+            )
           }),
         }));
       },

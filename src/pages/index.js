@@ -44,17 +44,16 @@ export default function Home() {
   const { data, error, isLoading } = useSWR("/api/restaurants", {
     fallbackData: [],
   });
-  const setData = useSpotStore((state) => state.setData);
+  // const setData = useSpotStore((state) => state.setData);
 
   if (!data || isLoading || error) {
     return null;
   }
 
-  setData(data);
-  console.log("data", data);
+  // setData(data);
+  // console.log("data", data);
 
 
-  
   const categories = [
     ...new Set(
       data

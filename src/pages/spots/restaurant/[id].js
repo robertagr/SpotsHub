@@ -6,13 +6,30 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import useSWR from "swr";
 import FavoriteButton from "../../../../components/FavoriteButton";
 import styles from "../../index.module.css";
-import FilterTags from "../../../../components/FilterTags";
+
+
+const StyledTags = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+
+`;
+
+const Tag = styled.span`
+  font-size: 14px; 
+  padding: 3px 8px; 
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+`;
 
 export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
   const { data: selectedRestaurant } = useSWR(`/api/restaurants/${id}`);
-console.log("selectedRestaurant",selectedRestaurant);
+
 
   if (!selectedRestaurant) {
     return <div>Loading...</div>;
@@ -27,10 +44,14 @@ console.log("selectedRestaurant",selectedRestaurant);
         width={336}
         height={327}
       />
+            <StyledTags>
+        {selectedRestaurant.tags.map((tag, index) => (
+          <Tag key={index}>{tag}</Tag>
+        ))}
+      </StyledTags>    
       <div>
         <Link href={selectedRestaurant.mapURL}>Location</Link>
       </div>
-      <div>{selectedRestaurant.tags}</div>
       <div className={`${styles.heartButton}`}>
         <FavoriteButton
           spotId={selectedRestaurant._id}
@@ -40,14 +61,14 @@ console.log("selectedRestaurant",selectedRestaurant);
       </div>
       <p>{selectedRestaurant.description}</p>
       
-      <Link href={`/spots/${selectedRestaurant.restaurantCategory}`}>
+      {/* <Link href={`/spots/${selectedRestaurant.restaurantCategory}`}>
         <div className={`${styles.styledIcons}`}>
           <IoArrowBackCircleOutline
             className={`${styles.textBlack}`}
             fontSize={30}
           />
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 }
