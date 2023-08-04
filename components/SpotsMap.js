@@ -59,9 +59,13 @@ const initialViewState = {
 export default function SpotsMap() {
   const { spots, searchQuery, setSearchQuery, searchedSpots } = useSpotStore();
   const [selectedSpot, setSelectedSpot] = useState(null);
+
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
+
+  console.log('VALID SP', validSpots);
+
   // const filteredSpots = spots.filter((spot) => {
   //   const tags = spot.tags || [];
   //   return (
@@ -81,6 +85,7 @@ export default function SpotsMap() {
   const handleMarkerClick = (spot) => {
     setSelectedSpot(spot);
   };
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -90,7 +95,7 @@ export default function SpotsMap() {
     setSelectedSpot(null); // Clear the selected spot to close the popup
   };
 
-  
+
   return (
     <MapContainer>
       <Map
@@ -136,6 +141,7 @@ export default function SpotsMap() {
             onClose={() => setSelectedSpot(null)}
           >
             <div className="popup-wrapper">
+              <Link href={`/drink/spots/bar/${selectedSpot.title}`}>
               <Image
                 src={selectedSpot.image}
                 alt={selectedSpot.title}
@@ -144,11 +150,7 @@ export default function SpotsMap() {
                 style={{ maxWidth: 110, maxHeight: 110 }}
               />
               <h3>{selectedSpot.title}</h3>
-                    {/* <Link href={`/spots/${selectedSpot.title}`}>
-              <h2>{selectedSpot.image}</h2>
-              <p>{selectedSpot.description}</p>
-
-              </Link> */}
+              </Link>
 
             </div>
           </StyledPopup>

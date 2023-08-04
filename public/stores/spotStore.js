@@ -15,7 +15,19 @@ export const useSpotStore = create(
         set({ searchQuery: query });
         set((state) => ({
           searchedSpots: state.spots.filter((spot) => {
-            return spot.title.toLowerCase() === query.toLowerCase();
+            const lowercaseQuery = query.toLowerCase();
+            return (
+              spot.title.toLowerCase() === lowercaseQuery ||
+              // (spot.tags.includes(lowercaseQuery))
+              (spot.tags.includes(lowercaseQuery))
+              
+              // spot.tags.forEach((tag) => 
+              //   tag.toLowerCase() === lowercaseQuery)
+
+              // }));
+              // spot.tags.map((tag) => tag.toLowerCase() === lowercaseQuery)
+
+            )
           }),
         }));
       },

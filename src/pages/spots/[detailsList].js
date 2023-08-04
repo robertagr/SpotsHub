@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSpotStore } from "../../../public/stores/spotStore";
 import styled from "styled-components";
-import FilterTags from "../../../components/FilterTags";
+// import FilterTags from "../../../components/FilterTags";
 
 export default function ListPage() {
   const router = useRouter();
@@ -20,9 +20,9 @@ export default function ListPage() {
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
 
-  const selectedRestaurantTags = spots
-    .map((restaurant) => restaurant.tags)
-    .filter((item) => item !== undefined);
+  // const selectedRestaurantTags = spots
+  //   .map((restaurant) => restaurant.tags)
+  //   .filter((item) => item !== undefined);
 
   // const allTags = selectedRestaurantCategory.reduce((acc, restaurant) => {
   //   restaurant.tags.forEach((tag) => acc.add(tag));
@@ -62,7 +62,6 @@ export default function ListPage() {
   return (
     <DetailsListWrapper>
       <Title>{detailsList} </Title>
-      <FilterTags selectedRestaurantTags={selectedRestaurantTags} />
       <Container>
         {selectedRestaurantCategory.map((restaurant) => (
           <CategoryContainer key={restaurant._id}>

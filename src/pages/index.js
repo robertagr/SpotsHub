@@ -7,6 +7,7 @@ import "./index.module.css"
 // import Login from "../../components/Login";
 import { signIn, SignOut, useSession } from "next-auth/react";
 
+
 const Title = styled.h1`
   display: flex;
   flex-direction: column;
@@ -50,6 +51,9 @@ export default function Home() {
   }
 
   // setData(data);
+  // console.log("data", data);
+
+
   const categories = [
     ...new Set(
       data
@@ -57,6 +61,7 @@ export default function Home() {
         .filter((item) => item !== undefined)
     ),
   ];
+  // console.log("categories",categories);
 
   return (
     <Wrapper>

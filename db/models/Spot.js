@@ -22,7 +22,7 @@ const spotSchema = new Schema({
     type: Number,
   },
 
-  tags: { type: [Schema.Types.ObjectId], ref: "Tags" },
+  tags: [String],
 
   restaurantCategory: { type: String },
   beverageCategory: { type: String },

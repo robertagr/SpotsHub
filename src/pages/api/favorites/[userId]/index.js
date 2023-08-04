@@ -14,7 +14,7 @@ export default async function handler(request, response) {
           try {
 
     const favorites = await getFavoritesByUserId(request.query.userId)
-     console.log(favorites)
+    //  console.log(favorites)
 
       return response.status(200).json(favorites);
     } catch (error) {
