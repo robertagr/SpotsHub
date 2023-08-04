@@ -6,6 +6,8 @@ import { IoArrowBackCircleOutline } from "react-icons/io5";
 import useSWR from "swr";
 import FavoriteButton from "../../../../components/FavoriteButton";
 import styles from "../../index.module.css";
+import FilterTags from "../../../../components/FilterTags";
+
 
 
 const StyledTags = styled.div`
@@ -18,22 +20,31 @@ const StyledTags = styled.div`
 `;
 
 const Tag = styled.span`
-  font-size: 14px; 
+  font-size: 12px; 
   padding: 3px 8px; 
   border: 1px solid black;
   border-radius: 5px;
   margin: 5px;
 `;
 
-export default function Restaurant() {
+
+export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
   const router = useRouter();
   const { id } = router.query;
   const { data: selectedRestaurant } = useSWR(`/api/restaurants/${id}`);
 
+  // const { spots } = useSpotStore();
+
+  // const selectedRestaurant = spots?.find(
+  //   (restaurant) => restaurant.title === id
+  // );
 
   if (!selectedRestaurant) {
     return <div>Loading...</div>;
   }
+
+
+  
 
   return (
     <div className={`${styles.container}`}>
@@ -55,8 +66,8 @@ export default function Restaurant() {
       <div className={`${styles.heartButton}`}>
         <FavoriteButton
           spotId={selectedRestaurant._id}
-          // favoriteSpots={favoriteSpots}
-          // onFavoriteChange={onFavoriteChange}
+          favoriteSpots={favoriteSpots}
+          onFavoriteChange={onFavoriteChange}
         />
       </div>
       <p>{selectedRestaurant.description}</p>
