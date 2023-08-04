@@ -1,13 +1,11 @@
-// import FavoriteButton from "../../../components/FavoriteButton";
 import LoginButton from "../../../components/LoginButton";
-import Profile from "../../../components/Profile";
+import FavoriteSpot from "../../../components/FavoriteSpot";
 
-export default function ProfilePage({ favoriteSpots}) {
-console.log(favoriteSpots);
+export default function ProfilePage() {
   return (
     <div>
       <LoginButton />
-      <Profile/> 
+      <FavoriteSpot/> 
     </div>
   );
 }

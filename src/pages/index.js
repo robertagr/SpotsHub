@@ -7,6 +7,7 @@ import "./index.module.css"
 // import Login from "../../components/Login";
 import { signIn, SignOut, useSession } from "next-auth/react";
 
+
 const Title = styled.h1`
   display: flex;
   flex-direction: column;
@@ -43,13 +44,17 @@ export default function Home() {
   const { data, error, isLoading } = useSWR("/api/restaurants", {
     fallbackData: [],
   });
-  // const setData = useSpotStore((state) => state.setData);
+  const setData = useSpotStore((state) => state.setData);
 
   if (!data || isLoading || error) {
     return null;
   }
 
-  // setData(data);
+  setData(data);
+  console.log("data", data);
+
+
+  
   const categories = [
     ...new Set(
       data
@@ -57,6 +62,7 @@ export default function Home() {
         .filter((item) => item !== undefined)
     ),
   ];
+  // console.log("categories",categories);
 
   return (
     <Wrapper>

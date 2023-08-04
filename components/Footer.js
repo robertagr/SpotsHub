@@ -56,27 +56,27 @@ export default function Footer() {
 
   return (
     <FooterContainer>
-      <FooterItem className="footer-item" active={activeItem === 0} onClick={() => handleItemClick(0)}>
-        <Link href="/">
-          <LiaHomeSolid fontSize={26} />
-        </Link>
-      </FooterItem>
-      <FooterItem className="footer-item" active={activeItem === 2} onClick={() => handleItemClick(2)}>
-        <Link href="/randomSpot">
-          <LiaDiceD6Solid fontSize={26} />
-        </Link>
-      </FooterItem>
-      <FooterItem className="footer-item" active={activeItem === 3} onClick={() => handleItemClick(3)}>
-        <Link href="/map">
-          <LiaMap fontSize={26} />
-        </Link>
-      </FooterItem>
-      <FooterItem className="footer-item" active={activeItem === 1} onClick={() => handleItemClick(1)}>
-        <Link href="/profile">
-          <LiaUserSolid fontSize={26} />
-        </Link>
-      </FooterItem>
-    </FooterContainer>
+    <Link href="/">
+  <FooterItem className="footer-item" active={activeItem === 0} onClick={() => handleItemClick(0)}>
+      <LiaHomeSolid fontSize={26} />
+  </FooterItem>
+    </Link>
+    <Link href="/randomSpot">
+  <FooterItem className="footer-item" active={activeItem === 2} onClick={() => handleItemClick(2)}>
+      <LiaDiceD6Solid fontSize={26} />
+  </FooterItem>
+    </Link>
+    <Link href="/map">
+  <FooterItem className="footer-item" active={activeItem === 3} onClick={() => handleItemClick(3)}>
+      <LiaMap fontSize={26} />
+  </FooterItem>
+    </Link>
+    <Link href="/profile">
+  <FooterItem className="footer-item" active={activeItem === 1} onClick={() => handleItemClick(1)}>
+      <LiaUserSolid fontSize={26} />
+  </FooterItem>
+    </Link>
+</FooterContainer>
   );
 }
 

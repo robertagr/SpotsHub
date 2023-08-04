@@ -31,18 +31,22 @@ const IconContainer = styled.div`
 export default function TopNavBar() {
   const router = useRouter(); // Get the router object
 
+  const isActiveRoute = (route) => {
+    return router.pathname === route;
+  };
+
   return (
     <NavBar>
       <IconContainer>
         <Link href="/">
-          <StyledIcons active={router.pathname === "/"}> {/* Compare with current route */}
+          <StyledIcons active={isActiveRoute("/")}>
             <LiaPizzaSliceSolid fontSize={30} />
           </StyledIcons>
         </Link>
       </IconContainer>
       <IconContainer>
         <Link href="/drink">
-          <StyledIcons active={router.pathname === "/drink"}> {/* Compare with current route */}
+          <StyledIcons active={isActiveRoute("/drink")}>
             <LiaCocktailSolid fontSize={30} />
           </StyledIcons>
         </Link>

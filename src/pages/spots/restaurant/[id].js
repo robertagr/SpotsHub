@@ -12,7 +12,7 @@ export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
   const { data: selectedRestaurant } = useSWR(`/api/restaurants/${id}`);
-
+console.log("selectedRestaurant",selectedRestaurant);
 
   if (!selectedRestaurant) {
     return <div>Loading...</div>;

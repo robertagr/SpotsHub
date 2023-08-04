@@ -59,9 +59,14 @@ const initialViewState = {
 export default function SpotsMap() {
   const { spots, searchQuery, setSearchQuery, searchedSpots } = useSpotStore();
   const [selectedSpot, setSelectedSpot] = useState(null);
+
+
   const validSpots = spots.filter(
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
+
+  console.log('VALID SP', validSpots);
+
   // const filteredSpots = spots.filter((spot) => {
   //   const tags = spot.tags || [];
   //   return (
@@ -81,6 +86,7 @@ export default function SpotsMap() {
   const handleMarkerClick = (spot) => {
     setSelectedSpot(spot);
   };
+
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -90,7 +96,7 @@ export default function SpotsMap() {
     setSelectedSpot(null); // Clear the selected spot to close the popup
   };
 
-  
+
   return (
     <MapContainer>
       <Map
