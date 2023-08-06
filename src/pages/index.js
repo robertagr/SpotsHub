@@ -3,9 +3,8 @@ import Link from "next/link";
 import { useSpotStore } from "../../public/stores/spotStore";
 import styled from "styled-components";
 import useSWR from "swr";
-import "./index.module.css"
+import "./index.module.css";
 import { signIn, SignOut, useSession } from "next-auth/react";
-
 
 const Title = styled.h1`
   display: flex;
@@ -20,6 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 `;
 
 const Container = styled.ul`
@@ -49,17 +49,15 @@ export default function Home() {
     return null;
   }
 
-  if (!session) {
-    return <>
-    <div>Please Log In</div>
-    <button onClick={() => signIn()}>Sign in </button>
-    </>;
-  } 
+  // if (!session) {
+  //   return <>
+  //   <div>Please Log In</div>
+  //   <button onClick={() => signIn()}>Sign in </button>
+  //   </>;
+  // }
 
   // setData(data);
   // console.log("data", data);
-
-
 
   const categories = [
     ...new Set(

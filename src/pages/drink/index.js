@@ -35,6 +35,7 @@ export default function DrinkCategory() {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: auto;
   `;
 
   const Container = styled.ul`
