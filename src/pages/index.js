@@ -7,29 +7,42 @@ import "./index.module.css";
 import { signIn, SignOut, useSession } from "next-auth/react";
 
 const Title = styled.h1`
+  color: gray;
+  margin-left: 0px;
+  font-size: 20px;
+  font-weight: normal;
+`;
+
+const SubTitle = styled.p`
+  margin-left: 0px;
+  font-weight: bold;
+`;
+const TitleWrapper = styled.h1`
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 20px;
   letter-spacing: -0.3px;
-  padding: 20px;
+  padding: 25px 10px 42px 6px;
+  margin-left: 0px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow: scroll;
 `;
 
 const Container = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 5px 15px;
   list-style-type: none;
   justify-items: center;
   margin: 20px;
-  overflow: scroll;
+  scale: 1.1;
 `;
 
 const CategoryContainer = styled.div`
@@ -70,17 +83,20 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <Title className="title">Restaurant Categories</Title>
+      <TitleWrapper>
+        <Title className="title">Explore your next favorite </Title>
+        <SubTitle>Food Spot</SubTitle>
+      </TitleWrapper>
       <Container>
         {categories.map((category) => (
           <CategoryContainer key={category}>
             <Link href={`/spots/${category}`}>
-              <h2 className="photo-name">{category}</h2>
+              <li className="photo-name">{category}</li>
               <Image
                 src={`/restaurantImages/${category}.jpg`}
                 alt={category}
                 width={140}
-                height={200}
+                height={190}
               />
             </Link>
           </CategoryContainer>
