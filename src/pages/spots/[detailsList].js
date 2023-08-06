@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSpotStore } from "../../../public/stores/spotStore";
 import styled from "styled-components";
-// import FilterTags from "../../../components/FilterTags";
+import FavoriteButton from "../../../components/FavoriteButton";
 
 export default function ListPage() {
   const router = useRouter();
@@ -20,26 +20,79 @@ export default function ListPage() {
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
 
-  // const selectedRestaurantTags = spots
-  //   .map((restaurant) => restaurant.tags)
-  //   .filter((item) => item !== undefined);
-
-  // const allTags = selectedRestaurantCategory.reduce((acc, restaurant) => {
-  //   restaurant.tags.forEach((tag) => acc.add(tag));
-  //   return acc;
-  // }, new Set());
-
-  // const uniqueTags = Array.from(allTags);
+  // const Title = styled.h1`
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   font-family: sans-serif;
+  //   color: #f2500a;
+  //   font-size: 20px;
+  //   letter-spacing: -0.3px;
+  //   padding: 25px 0px 0px 0px;
+  // `;
 
   const Title = styled.h1`
+    color: gray;
+    margin-left: 0px;
+    font-size: 20px;
+    font-weight: normal;
+  `;
+
+  const SubTitle = styled.p`
+    margin-left: 0px;
+    font-weight: bold;
+    color: #f2500a;
+    font-weight: 350;
+  `;
+
+  const TitleWrapper = styled.h1`
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: sans-serif;
-    color: #f2500a;
     font-size: 20px;
     letter-spacing: -0.3px;
-    padding: 25px 0px 0px 0px;
+    padding: 25px 10px 9px 6px;
+    margin-left: 18px;
+  `;
+
+  const CategoryContainer = styled.div`
+    position: relative;
+  `;
+
+  const ImageContainer = styled.div`
+    background-color: #fbfafa;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgb(0 0 0 / 10%);
+  `;
+
+  const TitleContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `;
+
+  const FavoriteContainer = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 20px;
+    scale: 0.8;
+  `;
+
+  const TitleBelowImage = styled.h2`
+    text-align: left;
+    font-size: 16px;
+    color: black;
+    height: 25px;
+    margin: 15px 0px 0px 0px;
+  `;
+
+  const Link = styled.a`
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
   `;
 
   const Container = styled.ul`
@@ -52,28 +105,38 @@ export default function ListPage() {
     margin: 20px;
   `;
 
-  const CategoryContainer = styled.div`
-    position: relative;
-  `;
   const DetailsListWrapper = styled.div`
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
   `;
 
   return (
     <DetailsListWrapper>
-      <Title>{detailsList} </Title>
+      <TitleWrapper>
+        <Title className="title">Now, find your </Title>
+        <SubTitle>{detailsList} Spot</SubTitle>
+      </TitleWrapper>
       <Container>
         {selectedRestaurantCategory.map((restaurant) => (
           <CategoryContainer key={restaurant._id}>
-            <Link href={`/spots/restaurant/${restaurant.title}`}>
-              <h2 className="photo-name">{restaurant.title}</h2>
-              <Image
-                src={restaurant.image}
-                alt={restaurant.title}
-                width={320}
-                height={130}
-              />
-            </Link>
+            <ImageContainer>
+              <Link href={`/spots/restaurant/${restaurant.title}`}>
+                <Image
+                  src={restaurant.image}
+                  alt={restaurant.title}
+                  width={320}
+                  height={130}
+                />
+              </Link>
+              <TitleContainer>
+                <TitleBelowImage>{restaurant.title}</TitleBelowImage>
+                <FavoriteContainer>
+                  <FavoriteButton spotId={restaurant._id} />
+                </FavoriteContainer>
+              </TitleContainer>
+            </ImageContainer>
           </CategoryContainer>
         ))}
       </Container>

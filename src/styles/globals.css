@@ -23,7 +23,8 @@ main {
   border-color: rgb(233, 232, 232);
   border-radius: 10px;
   border-width: 1px;
-  background: #fbfafa;
+  background-color: #fbfafa;
+  /* background: #f9f8f8; */
 }
 
 li {
