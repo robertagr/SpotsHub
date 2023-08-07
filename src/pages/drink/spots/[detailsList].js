@@ -10,7 +10,6 @@ export default function DrinkSpotsList() {
   const router = useRouter();
   const { detailsList } = router.query;
   const spots = useSpotStore((state) => state.spots);
-
   const selectedDrinkCategory = spots.filter(
     (spot) => spot.beverageCategory === detailsList
   );

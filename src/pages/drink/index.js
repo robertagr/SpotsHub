@@ -20,7 +20,7 @@ export default function DrinkCategory() {
         .filter((item) => item !== undefined)
     ),
   ];
-
+  console.log({ data, categories });
   const Title = styled.h1`
     color: gray;
     margin-left: 0px;

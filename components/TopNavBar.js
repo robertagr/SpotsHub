@@ -3,6 +3,12 @@ import { useRouter } from "next/router"; // Import the useRouter hook
 import { LiaPizzaSliceSolid, LiaCocktailSolid } from "react-icons/lia";
 import styled from "styled-components";
 // import Image from "next/image";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const StyledIcons = styled.div`
   color: ${(props) => (props.active ? "#f2500a" : "black")};
@@ -35,12 +41,12 @@ const IconsWrapper = styled.div`
   margin-right: 30px;
 `;
 
-const LogoImage = styled.img`
-  border-color: lightgrey;
-  border-style: solid;
-  transform: scale(0.5);
-  margin-left: -20px;
-`;
+// const LogoImage = styled.img`
+//   border-color: lightgrey;
+//   border-style: solid;
+//   transform: scale(0.5);
+//   margin-left: -20px;
+// `;
 
 export default function TopNavBar() {
   const router = useRouter(); // Get the router object
@@ -51,12 +57,13 @@ export default function TopNavBar() {
 
   return (
     <NavBar>
-      <LogoImage
+      {/* <h2 className={roboto.className}>spotshub</h2> */}
+      {/* <LogoImage
         src={"logo/Logo.jpg/"}
         alt={"logo"}
         width={200}
         height={50}
-      ></LogoImage>
+      ></LogoImage> */}
       <IconsWrapper>
         <IconContainer>
           <Link href="/">

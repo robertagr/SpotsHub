@@ -10,7 +10,6 @@ export default function ListPage() {
   const router = useRouter();
   const { detailsList } = router.query;
   const spots = useSpotStore((state) => state.spots);
-  const selectedTags = useSpotStore((state) => state.selectedTags);
 
   if (!spots || !detailsList) {
     return <h3>Loading...</h3>;
