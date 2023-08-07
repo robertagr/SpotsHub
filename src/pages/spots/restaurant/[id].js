@@ -8,7 +8,10 @@ import styles from "../../index.module.css";
 import { MdLocationPin } from "react-icons/md";
 
 const ImageStyled = styled(Image)`
-  margin-top: 20px;
+  position: relative;
+`;
+
+const ImageStyledContainer = styled.div`
   position: relative;
 `;
 
@@ -22,30 +25,46 @@ const StyledTags = styled.div`
 `;
 
 const LocationIconContainer = styled.div`
-  bottom: 1400%;
-  /* margin-top: 100px; */
-  margin-left: 450%;
-  position: relative;
-  /* top: 0;
-  right: 0;
-  margin-top: 100px;
-  margin-right: 210px; */
+  position: absolute;
+  top: 10px;
+  right: 10px;
   background-color: #f2f2f2;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   z-index: 1;
+  &:hover {
+    background-color: #fcbf8d;
+  }
 `;
 
-// const FavoriteButtonContainer = styled.div`
-//   position: absolute;
-//   bottom: 10px;
-//   right: 10px;
-//   z-index: 1;
-// `;
+const FavoriteButtonContainer = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  background-color: #f2f2f2;
+  font-size: 4px;
+  &:hover {
+    background-color: #fcbf8d;
+  }
+`;
+
+const FavoriteButtonInnerContainer = styled.div`
+  /* Add smaller size and padding to make the heart icon container smaller */
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  scale: 0.7;
+`;
 
 const LocationIcon = styled(MdLocationPin)`
   font-size: 20px;
@@ -73,7 +92,7 @@ const DescriptionTitle = styled.h4`
 `;
 
 const DescriptionText = styled.p`
-  margin: 2px 20px 2px 22px;
+  margin: 2px 20px 2px 25px;
   margin-top: 0px;
   text-align: left;
 `;
@@ -89,7 +108,7 @@ const DescriptionWrap = styled.div`
   margin-right: 25px;
 `;
 
-export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
+export default function Restaurant() {
   const router = useRouter();
   const { id } = router.query;
   const { data: selectedRestaurant } = useSWR(`/api/restaurants/${id}`);
@@ -106,12 +125,26 @@ export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
 
   return (
     <div className={`${styles.container}`}>
-      <ImageStyled
-        src={selectedRestaurant.image}
-        alt={selectedRestaurant.title}
-        width={336}
-        height={327}
-      />
+      <ImageStyledContainer>
+        <ImageStyled
+          src={selectedRestaurant.image}
+          alt={selectedRestaurant.title}
+          width={336}
+          height={327}
+        />
+        <LocationIconContainer>
+          <Link href={selectedRestaurant.mapURL}>
+            <LocationIcon fontSize={30} />
+          </Link>
+        </LocationIconContainer>
+
+        <FavoriteButtonContainer>
+          <FavoriteButtonInnerContainer>
+            <FavoriteButton spotId={selectedRestaurant._id} />
+          </FavoriteButtonInnerContainer>
+        </FavoriteButtonContainer>
+      </ImageStyledContainer>
+
       <InfoContainer>
         <h1 className={`${styles.title}`}>{selectedRestaurant.title}</h1>
         <StyledTags>
@@ -119,19 +152,7 @@ export default function Restaurant({ favoriteSpots, onFavoriteChange }) {
             <Tag key={index}>{tag}</Tag>
           ))}
         </StyledTags>
-        <Link href={selectedRestaurant.mapURL}>
-          <LocationIconContainer>
-            <LocationIcon fontSize={30} />
-          </LocationIconContainer>
-        </Link>
 
-        <div className={`${styles.heartButton}`}>
-          <FavoriteButton
-            spotId={selectedRestaurant._id}
-            favoriteSpots={favoriteSpots}
-            onFavoriteChange={onFavoriteChange}
-          />
-        </div>
         <></>
         <DescriptionWrap>
           <DescriptionTitle>Description</DescriptionTitle>
