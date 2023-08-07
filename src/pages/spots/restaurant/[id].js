@@ -22,27 +22,30 @@ const StyledTags = styled.div`
 `;
 
 const LocationIconContainer = styled.div`
-  position: absolute;
-  top: 0;
+  bottom: 1400%;
+  /* margin-top: 100px; */
+  margin-left: 450%;
+  position: relative;
+  /* top: 0;
   right: 0;
   margin-top: 100px;
-  margin-right: 210px;
+  margin-right: 210px; */
   background-color: #f2f2f2;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   z-index: 1;
 `;
 
-const FavoriteButtonContainer = styled.div`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  z-index: 1;
-`;
+// const FavoriteButtonContainer = styled.div`
+//   position: absolute;
+//   bottom: 10px;
+//   right: 10px;
+//   z-index: 1;
+// `;
 
 const LocationIcon = styled(MdLocationPin)`
   font-size: 20px;
