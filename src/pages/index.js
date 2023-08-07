@@ -44,6 +44,13 @@ const Container = styled.ul`
   scale: 1.1;
 `;
 
+const StyledImage = styled(Image)`
+  &:hover {
+    border-radius: 20px;
+    box-shadow: 1px 8px 10px rgb(1 1 0 / 25%);
+  }
+`;
+
 const CategoryContainer = styled.div`
   position: relative;
   height: 200px;
@@ -91,7 +98,7 @@ export default function Home() {
           <CategoryContainer key={category}>
             <Link href={`/spots/${category}`}>
               <li className="photo-name">{category}</li>
-              <Image
+              <StyledImage
                 src={`/restaurantImages/${category}.jpg`}
                 alt={category}
                 width={140}

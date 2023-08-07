@@ -36,10 +36,6 @@ img {
   border-radius: 20px;
 }
 
-/* img:hover {
-  opacity: 0.5;
-} */
-
 .photo-name {
   border-style: none;
   border-radius: 5px;
@@ -49,7 +45,7 @@ img {
   font-size: 14px;
   font-weight: 400;
   position: absolute;
-  bottom: 15px;
+  bottom: 17px;
   left: 50%;
   transform: translateX(-50%);
 }
