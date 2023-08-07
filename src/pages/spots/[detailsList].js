@@ -19,17 +19,6 @@ export default function ListPage() {
     (restaurant) => restaurant.restaurantCategory === detailsList
   );
 
-  // const Title = styled.h1`
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   font-family: sans-serif;
-  //   color: #f2500a;
-  //   font-size: 20px;
-  //   letter-spacing: -0.3px;
-  //   padding: 25px 0px 0px 0px;
-  // `;
-
   const Title = styled.h1`
     color: gray;
     margin-left: 0px;

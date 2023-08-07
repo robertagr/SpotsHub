@@ -1,7 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import {LiaHomeSolid, LiaUserSolid, LiaMap, LiaDiceD6Solid} from "react-icons/lia"
+import {
+  LiaHomeSolid,
+  LiaUserSolid,
+  LiaMap,
+  LiaDiceD6Solid,
+} from "react-icons/lia";
 import { useRouter } from "next/dist/client/router";
 
 const FooterContainer = styled.footer`
@@ -20,8 +25,7 @@ const FooterItem = styled.li`
   transition: background-color 0.3s;
   border-radius: 20px;
   width: 70px;
-  /* margin: 100px; */
-  /* background-color: ${(props) => (props.active ? "#f2500a" : "transparent")}; */
+
   background: linear-gradient(90deg, transparent, transparent);
   background-size: 200% 100%;
   background-position: ${(props) => (props.active ? "100%" : "0%")};
@@ -38,12 +42,10 @@ const FooterItem = styled.li`
   svg {
     color: ${(props) => (props.active ? "#ffffff" : "#000000")};
   }
-
 `;
 
 export default function Footer() {
   const [activeItem, setActiveItem] = useState(null);
-
 
   const handleItemClick = (index, href) => {
     setActiveItem(index);
@@ -53,33 +55,44 @@ export default function Footer() {
     }
   };
 
-
   return (
     <FooterContainer>
-    <Link href="/">
-  <FooterItem className="footer-item" active={activeItem === 0} onClick={() => handleItemClick(0)}>
-      <LiaHomeSolid fontSize={26} />
-  </FooterItem>
-    </Link>
-    <Link href="/randomSpot">
-  <FooterItem className="footer-item" active={activeItem === 2} onClick={() => handleItemClick(2)}>
-      <LiaDiceD6Solid fontSize={26} />
-  </FooterItem>
-    </Link>
-    <Link href="/map">
-  <FooterItem className="footer-item" active={activeItem === 3} onClick={() => handleItemClick(3)}>
-      <LiaMap fontSize={26} />
-  </FooterItem>
-    </Link>
-    <Link href="/profile">
-  <FooterItem className="footer-item" active={activeItem === 1} onClick={() => handleItemClick(1)}>
-      <LiaUserSolid fontSize={26} />
-  </FooterItem>
-    </Link>
-</FooterContainer>
+      <Link href="/">
+        <FooterItem
+          className="footer-item"
+          active={activeItem === 0}
+          onClick={() => handleItemClick(0)}
+        >
+          <LiaHomeSolid fontSize={26} />
+        </FooterItem>
+      </Link>
+      <Link href="/randomSpot">
+        <FooterItem
+          className="footer-item"
+          active={activeItem === 2}
+          onClick={() => handleItemClick(2)}
+        >
+          <LiaDiceD6Solid fontSize={26} />
+        </FooterItem>
+      </Link>
+      <Link href="/map">
+        <FooterItem
+          className="footer-item"
+          active={activeItem === 3}
+          onClick={() => handleItemClick(3)}
+        >
+          <LiaMap fontSize={26} />
+        </FooterItem>
+      </Link>
+      <Link href="/profile">
+        <FooterItem
+          className="footer-item"
+          active={activeItem === 1}
+          onClick={() => handleItemClick(1)}
+        >
+          <LiaUserSolid fontSize={26} />
+        </FooterItem>
+      </Link>
+    </FooterContainer>
   );
 }
-
-
-
-

@@ -3,11 +3,20 @@ import { useRouter } from "next/router"; // Import the useRouter hook
 import { LiaPizzaSliceSolid, LiaCocktailSolid } from "react-icons/lia";
 import styled from "styled-components";
 // import Image from "next/image";
-import { Roboto } from "next/font/google";
+import {
+  DM_Serif_Display,
+  Sarabun,
+  Hammersmith_One,
+  DM_Serif_Text,
+  Roboto_Serif,
+  Bodoni_Moda,
+  Lato,
+} from "next/font/google";
 
-const roboto = Roboto({
-  weight: "400",
+const lobster = Roboto_Serif({
+  weight: "900",
   subsets: ["latin"],
+  style: ["normal"],
 });
 
 const StyledIcons = styled.div`
@@ -41,11 +50,14 @@ const IconsWrapper = styled.div`
   margin-right: 30px;
 `;
 
-const LogoImage = styled.img`
-  border-color: lightgrey;
+const LogoStyle = styled.div`
+  color: #545454;
+  border-color: rgb(233, 232, 232);
+  border-radius: 19px;
   border-style: solid;
-  transform: scale(0.5);
-  margin-left: -20px;
+  transform: scale(0.7);
+  padding: 0px 10px 0px 10px;
+  margin-left: 10px;
 `;
 
 export default function TopNavBar() {
@@ -57,13 +69,10 @@ export default function TopNavBar() {
 
   return (
     <NavBar>
-      {/* <h2 className={roboto.className}>spotshub</h2> */}
-      <LogoImage
-        src={"logo/Logo.jpg/"}
-        alt={"logo"}
-        width={200}
-        height={50}
-      ></LogoImage>
+      <LogoStyle>
+        <h2 className={lobster.className}>spotshub</h2>
+      </LogoStyle>
+
       <IconsWrapper>
         <IconContainer>
           <Link href="/">
