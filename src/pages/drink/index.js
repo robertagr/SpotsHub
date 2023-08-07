@@ -22,37 +22,55 @@ export default function DrinkCategory() {
   ];
 
   const Title = styled.h1`
+    color: gray;
+    margin-left: 0px;
+    font-size: 20px;
+    font-weight: normal;
+  `;
+
+  const SubTitle = styled.p`
+    margin-left: 0px;
+    font-weight: bold;
+  `;
+  const TitleWrapper = styled.h1`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* font-family: Montserrat; */
     font-size: 20px;
     letter-spacing: -0.3px;
-    padding: 20px;
+    padding: 25px 10px 42px 6px;
+    margin-left: 0px;
   `;
 
   const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: scroll;
   `;
 
   const Container = styled.ul`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    /* gap: 20px; */
+    gap: 5px 15px;
     list-style-type: none;
     justify-items: center;
     margin: 20px;
+    scale: 1.1;
   `;
 
   const CategoryContainer = styled.div`
     position: relative;
+    height: 200px;
   `;
 
   return (
     <Wrapper>
-      <Title>Drink Category</Title>
+      <TitleWrapper>
+        <Title className="title">Explore your next favorite </Title>
+        <SubTitle>Drink Spot</SubTitle>
+      </TitleWrapper>{" "}
       <Container>
         {categories.map((beverageCategory) => (
           <CategoryContainer key={beverageCategory}>

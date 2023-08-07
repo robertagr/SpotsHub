@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Map, { Marker, Popup } from "react-map-gl";
+import Map, { Marker, Popup, GeolocateControl } from "react-map-gl";
 import { useSpotStore } from "../public/stores/spotStore";
 import { useState, useEffect } from "react";
 import { MdLocationPin } from "react-icons/md";
@@ -94,6 +94,11 @@ export default function SpotsMap() {
         attributionControl={false}
         style={{ width: "100%", height: "100%" }}
       >
+        <GeolocateControl
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          showUserLocation={true}
+        />
         <SearchBoxMap
           value={searchQuery}
           onChange={handleSearchChange}
