@@ -41,12 +41,12 @@ const IconsWrapper = styled.div`
   margin-right: 30px;
 `;
 
-// const LogoImage = styled.img`
-//   border-color: lightgrey;
-//   border-style: solid;
-//   transform: scale(0.5);
-//   margin-left: -20px;
-// `;
+const LogoImage = styled.img`
+  border-color: lightgrey;
+  border-style: solid;
+  transform: scale(0.5);
+  margin-left: -20px;
+`;
 
 export default function TopNavBar() {
   const router = useRouter(); // Get the router object
@@ -58,12 +58,12 @@ export default function TopNavBar() {
   return (
     <NavBar>
       {/* <h2 className={roboto.className}>spotshub</h2> */}
-      {/* <LogoImage
+      <LogoImage
         src={"logo/Logo.jpg/"}
         alt={"logo"}
         width={200}
         height={50}
-      ></LogoImage> */}
+      ></LogoImage>
       <IconsWrapper>
         <IconContainer>
           <Link href="/">
