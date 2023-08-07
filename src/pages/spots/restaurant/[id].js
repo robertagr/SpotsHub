@@ -15,13 +15,12 @@ const ImageStyledContainer = styled.div`
   position: relative;
 `;
 
-//  rgb(233, 232, 232) COLOR BORDER ICON LOCATION
-
 const StyledTags = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 30px;
+  margin-right: 30px;
 `;
 
 const LocationIconContainer = styled.div`
@@ -89,6 +88,7 @@ const InfoContainer = styled.div`
 const DescriptionTitle = styled.h4`
   margin: 37px 0px 0px 25px;
   margin-top: 10px;
+  color: gray;
 `;
 
 const DescriptionText = styled.p`
