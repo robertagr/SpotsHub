@@ -7,14 +7,10 @@ const ProfileContainer = styled.div`
   height: 100;
 `;
 
-const Separator = styled.div`
-  border-block-end: 1px solid rgb(233, 232, 232);
-`;
 export default function ProfilePage() {
   return (
     <ProfileContainer>
       <LoginButton />
-      <Separator />
       <FavoriteSpot />
     </ProfileContainer>
   );

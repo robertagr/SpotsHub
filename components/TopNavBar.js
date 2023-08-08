@@ -28,6 +28,7 @@ const NavBar = styled.nav`
   justify-content: center;
   padding: 10px;
   border-block-end: 1px solid rgb(233, 232, 232);
+  position: sticky;
 `;
 
 const IconContainer = styled.div`

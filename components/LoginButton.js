@@ -7,8 +7,6 @@ const WelcomeText = styled.div`
   font-size: 15px;
   font-weight: normal;
   margin-right: 88px;
-
-  /* margin-left: 0px; */
 `;
 
 const UserName = styled.div`
@@ -43,11 +41,66 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const SignInContainer = styled.div`
+  /* padding: 25px 0; */
+
+  padding: 25px 145px 20px 145px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  overflow: hidden;
+
+  justify-content: center;
+  min-height: 600px;
+  background: linear-gradient(
+    135deg,
+    rgb(255 149 103 / 75%),
+    rgb(255 255 255 / 75%)
+  );
+
+  /* background: linear-gradient(135deg, #ff763ac4, #ffe6de); */
+
+  button {
+    background-color: #373332;
+    /* background-color: #f2500a; */
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+
+    &:hover {
+      background-color: #ff9875;
+    }
+  }
+`;
+
+const SignInBox = styled.div`
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 0px;
+  width: 200%;
+  max-width: 200px;
+`;
+
+const Separator = styled.div`
+  border-block-end: 1px solid rgb(233, 232, 232);
+`;
+
 export default function LoginButton() {
   const { data: session, error, isLoading } = useSession();
 
   return (
-    <div>
+    <>
       {session ? (
         <>
           <Wrapper>
@@ -55,15 +108,21 @@ export default function LoginButton() {
               <WelcomeText>Welcome,</WelcomeText>
               <UserName>{session.user.name}</UserName>
             </WelcomeContainer>
+
             <SignOutButton onClick={() => signOut()}>Sign out</SignOutButton>
           </Wrapper>
+          <Separator />
         </>
       ) : (
         <>
-          <div>Please Log In</div>
-          <button onClick={() => signIn()}>Sign in </button>
+          <SignInContainer>
+            <SignInBox>
+              <p>Explore Berlin's Authentic Flavors!</p>
+              <button onClick={() => signIn()}>Sign in</button>
+            </SignInBox>
+          </SignInContainer>
         </>
       )}
-    </div>
+    </>
   );
 }
