@@ -117,7 +117,7 @@ export default function LoginButton() {
         <>
           <SignInContainer>
             <SignInBox>
-              <p>Explore Berlin's Authentic Flavors!</p>
+              <p>Explore Berlin&apos;s Authentic Flavors!</p>
               <button onClick={() => signIn()}>Sign in</button>
             </SignInBox>
           </SignInContainer>
