@@ -4,30 +4,28 @@ import RandomButton from "../../../components/RandomButton";
 import { useState, useEffect } from "react";
 
 const Title = styled.h1`
+  text-align: center;
+  font-size: 23px;
+  color: #f2500a;
+  /* margin-right: 150px; */
+  font-weight: 400;
+`;
+
+const RandomTitleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  color: #f2500a;
   align-items: center;
-  /* font-family: Montserrat; */
-  font-size: 20px;
-  letter-spacing: -0.3px;
+  margin: 20px;
   padding: 20px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style-type: none;
-  justify-content: center;
-`;
-
-const Random = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style-type: none;
-  justify-content: center;
+const RandomTitleText = styled.div`
+  font-size: 17px;
+  margin-bottom: 15px;
+  color: #555555;
 `;
 
 export default function RandomSpot() {
@@ -38,16 +36,14 @@ export default function RandomSpot() {
 
   return (
     <div>
-      <Title>Time to choose!</Title>
+      <Title>Feeling Indecisive?</Title>
       {isClient ? (
-        <Random>
-          <p>
-            Too many cool places and do not know where to go? Just click the
-            button below, and let the button decide for you!
-          </p>
-
+        <RandomTitleContainer>
+          <RandomTitleText>
+            Let our randomizer help you discover your next favorite spot!
+          </RandomTitleText>
           <RandomButton />
-        </Random>
+        </RandomTitleContainer>
       ) : (
         "Pre-rendered"
       )}

@@ -3,17 +3,9 @@ import { useRouter } from "next/router"; // Import the useRouter hook
 import { LiaPizzaSliceSolid, LiaCocktailSolid } from "react-icons/lia";
 import styled from "styled-components";
 // import Image from "next/image";
-import {
-  DM_Serif_Display,
-  Sarabun,
-  Hammersmith_One,
-  DM_Serif_Text,
-  Roboto_Serif,
-  Bodoni_Moda,
-  Lato,
-} from "next/font/google";
+import { Roboto_Serif } from "next/font/google";
 
-const lobster = Roboto_Serif({
+const roboto = Roboto_Serif({
   weight: "900",
   subsets: ["latin"],
   style: ["normal"],
@@ -36,6 +28,7 @@ const NavBar = styled.nav`
   justify-content: center;
   padding: 10px;
   border-block-end: 1px solid rgb(233, 232, 232);
+  position: sticky;
 `;
 
 const IconContainer = styled.div`
@@ -70,7 +63,7 @@ export default function TopNavBar() {
   return (
     <NavBar>
       <LogoStyle>
-        <h2 className={lobster.className}>spotshub</h2>
+        <h2 className={roboto.className}>spotshub</h2>
       </LogoStyle>
 
       <IconsWrapper>

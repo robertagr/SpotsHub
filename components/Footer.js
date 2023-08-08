@@ -16,6 +16,7 @@ const FooterContainer = styled.footer`
   padding: 20px;
   margin-top: auto;
   border-block-start: 1px solid rgb(233, 232, 232);
+  position: sticky;
 `;
 
 const FooterItem = styled.li`
