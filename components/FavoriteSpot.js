@@ -7,29 +7,24 @@ import Image from "next/image.js";
 import Link from "next/link.js";
 
 const FavWrapper = styled.div`
-  /* overflow: auto;
-  height: 450px; */
+  overflow: auto;
+  margin: 0px;
 `;
-
 const Container = styled.div`
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin: 20px; */
-  column-count: 2;
-  column-gap: 17px;
-  margin: 50px 20px 50px 20px;
+`;
+
+const ImageContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin: 20px;
+  /* margin: 20px; */
+  margin: 0px 20px 0px 5px;
 `;
 
 const FirstTitle = styled.h1`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  font-size: 25px; */
   margin-top: 20px;
   color: #444444;
   margin-right: 160px;
@@ -38,7 +33,6 @@ const FirstTitle = styled.h1`
 `;
 
 const SubTitle = styled.h1`
-  /* margin-left: 0px; */
   margin-right: 210px;
   font-weight: bold;
   color: #f2500a;
@@ -47,40 +41,50 @@ const SubTitle = styled.h1`
 `;
 
 const FirstTitleContainer = styled.div`
-  margin-bottom: 20px; /* Add margin to create space between the title and images */
+  margin-bottom: 33px;
+  margin-right: 40px;
+  margin: 0px 70px 30px 0px;
 `;
 
 const SpotContainer = styled.div`
-  /* display: flex;
-  width: 350px;
   border-radius: 20px;
-  border-width: 1px;
+  border-style: solid;
   border-color: lightgray;
-  background-color: white; */
+  border-width: 0.4px;
+  background-color: #fbfafa;
+  width: 110%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  width: 100%;
-  position: relative; /* Set the position to relative for the container */
+  padding: 7px 0px 0px 0px;
+  box-shadow: 1px 8px 10px rgb(1 1 0 / 7%);
+
+  &:hover {
+    box-shadow: 1px 8px 10px rgb(1 1 0 / 20%);
+  }
 `;
 
-const OverlayContent = styled.div`
-  /* position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  border-radius: 0 0 20px 20px;
+const TitleBelowImage = styled.h2`
+  text-align: left;
+  font-size: 15px;
+  color: #333333;
+  height: 25px;
+  font-weight: 400;
+`;
+
+const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center; */
+  align-items: center;
+  flex-direction: row-reverse;
 `;
 
-const SpotTitle = styled.h4`
-  /* flex: 0.4; */
-  /* text-align: center; */
+const FavoriteButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  /* margin-right: 0px; */
+  font-size: 20px;
+  scale: 0.8;
 `;
 
 export default function FavoriteSpot() {
@@ -138,34 +142,38 @@ export default function FavoriteSpot() {
         <FirstTitle>My Favorite</FirstTitle>
         <SubTitle> Spots</SubTitle>
       </FirstTitleContainer>
-      <Container>
+      <ImageContainer>
         {data.map((spot) => {
           if (!spot.spotId?._id) {
             // If spotId doesn't exist, skip rendering
             return null;
           }
           return (
-            <SpotContainer key={spot._id}>
-              <Link href={`drink/spots/bar/${spot.spotId.title}`}>
-                <Image
-                  src={spot.spotId.image}
-                  alt={spot.spotId.title}
-                  width={"150"}
-                  height={"180"}
-                />
-              </Link>
-              <OverlayContent>
-                <SpotTitle>{spot.spotId.title}</SpotTitle>
-                <FavoriteButton
-                  spotId={spot.spotId._id}
-                  isFavorite={spot.isFavorite}
-                  onFavoriteChange={handleFavoriteChange}
-                />
-              </OverlayContent>
-            </SpotContainer>
+            <Container key={spot._id}>
+              <SpotContainer>
+                <Link href={`drink/spots/bar/${spot.spotId.title}`}>
+                  <Image
+                    src={spot.spotId.image}
+                    alt={spot.spotId.title}
+                    width={150}
+                    height={160}
+                  />
+                </Link>
+                <TitleContainer>
+                  <FavoriteButtonContainer>
+                    <FavoriteButton
+                      spotId={spot.spotId._id}
+                      isFavorite={spot.isFavorite}
+                      onFavoriteChange={handleFavoriteChange}
+                    />
+                  </FavoriteButtonContainer>
+                  <TitleBelowImage>{spot.spotId.title}</TitleBelowImage>
+                </TitleContainer>
+              </SpotContainer>
+            </Container>
           );
         })}
-      </Container>
+      </ImageContainer>
     </FavWrapper>
   );
 }
