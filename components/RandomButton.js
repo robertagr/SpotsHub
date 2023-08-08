@@ -6,8 +6,6 @@ import styled from "styled-components";
 
 export default function RandomSpots() {
   const { spots } = useSpotStore();
-
-  // State variable to store the random spot
   const [randomSpot, setRandomSpot] = useState(null);
 
   // Function to get a random spot
@@ -19,7 +17,7 @@ export default function RandomSpots() {
   };
 
   const Button = styled.button`
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
     font-family: sans-serif;
     color: #ffffff;
@@ -42,14 +40,21 @@ export default function RandomSpots() {
     align-items: center;
     gap: 20px;
     padding: 10px 20px 20px 20px;
+    position: relative;
 
     h2 {
-      text-align: center;
       position: absolute;
-      color: white;
-      text-shadow: 2px 2px black;
-      transform: translateX(120px);
-      font-size: x-large;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #545454;
+      font-size: medium;
+      text-decoration: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px 10px;
+      border-radius: 15px;
+      width: 60%;
     }
   `;
 
@@ -60,14 +65,14 @@ export default function RandomSpots() {
         <section>
           <div key={randomSpot._id}>
             <Link href={`/drink/spots/bar/${randomSpot.title}`}>
-              <h2>{randomSpot.title}</h2>
               <Image
                 src={randomSpot.image}
                 alt={randomSpot.title}
-                width={340}
-                height={280}
+                width={280}
+                height={250}
               />
             </Link>
+            <h2>{randomSpot.title}</h2>
           </div>
         </section>
       )}
