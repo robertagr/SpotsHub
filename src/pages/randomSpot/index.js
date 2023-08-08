@@ -3,12 +3,29 @@ import styled from "styled-components";
 import RandomButton from "../../../components/RandomButton";
 import { useState, useEffect } from "react";
 
+const PageContainer = styled.div`
+  padding: 25px 145px 20px 145px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  gap: 5px;
+  justify-content: center;
+  min-height: 600px;
+  background: linear-gradient(
+    135deg,
+    rgb(255 149 103 / 75%),
+    rgb(255 255 255 / 75%)
+  );
+`;
+
 const Title = styled.h1`
   text-align: center;
   font-size: 23px;
-  color: #f2500a;
+  color: #2a2a2a;
   /* margin-right: 150px; */
-  font-weight: 400;
+  /* font-weight: 400; */
 `;
 
 const RandomTitleContainer = styled.div`
@@ -18,8 +35,12 @@ const RandomTitleContainer = styled.div`
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
+  background-color: rgba(255, 255, 255, 0.75);
+
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300%;
+  max-width: 400px;
 `;
 
 const RandomTitleText = styled.div`
@@ -35,18 +56,19 @@ export default function RandomSpot() {
   }, []);
 
   return (
-    <div>
+    <PageContainer>
       <Title>Feeling Indecisive?</Title>
       {isClient ? (
         <RandomTitleContainer>
           <RandomTitleText>
             Let our randomizer help you discover your next favorite spot!
           </RandomTitleText>
+          {/* <RandomBox></RandomBox> */}
           <RandomButton />
         </RandomTitleContainer>
       ) : (
         "Pre-rendered"
       )}
-    </div>
+    </PageContainer>
   );
 }

@@ -43,7 +43,6 @@ const Wrapper = styled.div`
 
 const SignInContainer = styled.div`
   /* padding: 25px 0; */
-
   padding: 25px 145px 20px 145px;
   margin: 0px;
   display: flex;
