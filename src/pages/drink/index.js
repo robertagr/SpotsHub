@@ -65,6 +65,12 @@ export default function DrinkCategory() {
     height: 200px;
   `;
 
+  const StyledImage = styled(Image)`
+    &:hover {
+      border-radius: 20px;
+      box-shadow: 1px 8px 10px rgb(1 1 0 / 25%);
+    }
+  `;
   return (
     <Wrapper>
       <TitleWrapper>
@@ -76,7 +82,7 @@ export default function DrinkCategory() {
           <CategoryContainer key={beverageCategory}>
             <Link href={`/drink/spots/${beverageCategory}`}>
               <li className="photo-name"> {beverageCategory}</li>
-              <Image
+              <StyledImage
                 src={`/drinkImages/${beverageCategory}.jpg`}
                 alt={beverageCategory}
                 width={140}

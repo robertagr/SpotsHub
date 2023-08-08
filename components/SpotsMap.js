@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Map, { Marker, Popup, GeolocateControl } from "react-map-gl";
 import { useSpotStore } from "../public/stores/spotStore";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MdLocationPin } from "react-icons/md";
 import SearchBoxMap from "./SearchBoxMap";
 import Image from "next/image";
@@ -19,6 +19,7 @@ const MapContainer = styled.div`
     display: none;
   }
 `;
+
 const StyledMarker = styled.div`
   color: #f2500a;
   &:hover {
@@ -62,7 +63,7 @@ export default function SpotsMap() {
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
 
-  console.log("VALID SP", validSpots);
+  // console.log("VALID SP", validSpots);
 
   useEffect(() => {
     if (searchedSpots.length >= 0) {
@@ -95,6 +96,7 @@ export default function SpotsMap() {
         style={{ width: "100%", height: "100%" }}
       >
         <GeolocateControl
+          position="bottom-right"
           positionOptions={{ enableHighAccuracy: true }}
           trackUserLocation={true}
           showUserLocation={true}

@@ -6,7 +6,7 @@ const SearchContainer = styled.div`
   width: 300px;
   height: 40px;
   margin-top: 20px;
-
+  z-index: 100;
 `;
 
 const SearchInput = styled.input`
@@ -32,7 +32,12 @@ const CancelButton = styled.button`
   cursor: pointer;
 `;
 
-export default function SearchBoxMap({ value, onChange, placeholder, onCancel }) {
+export default function SearchBoxMap({
+  value,
+  onChange,
+  placeholder,
+  onCancel,
+}) {
   return (
     <SearchContainer>
       <SearchInput
