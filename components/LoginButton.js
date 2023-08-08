@@ -21,21 +21,20 @@ const UserName = styled.div`
 `;
 
 const WelcomeContainer = styled.div`
-  /* display: flex; */
-  /* align-items: center; */
   padding: 25px 10px 20px 6px;
-  /* margin-right: 100%; */
+  margin: 0px;
 `;
 
-const SignInButton = styled.button`
+const SignOutButton = styled.button`
   border-radius: 10px;
   border-style: none;
   width: 80px;
   height: 30px;
-  /* margin: 0px 0px 5px 200px; */
-  margin-left: 10px;
+  margin-left: 80px;
   cursor: pointer;
   &:hover {
+    /* box-shadow: 2px 2px 7px rgb(1 1 0 / 7%); */
+    border-radius: 0px;
   }
 `;
 
@@ -56,7 +55,7 @@ export default function LoginButton() {
               <WelcomeText>Welcome,</WelcomeText>
               <UserName>{session.user.name}</UserName>
             </WelcomeContainer>
-            <SignInButton onClick={() => signOut()}>Sign out</SignInButton>
+            <SignOutButton onClick={() => signOut()}>Sign out</SignOutButton>
           </Wrapper>
         </>
       ) : (
