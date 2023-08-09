@@ -49,6 +49,11 @@ const StyledPopup = styled(Popup)`
   }
 `;
 
+const PopUpTitle = styled.h3`
+  color: #3f3f3f;
+  font-size: inherit;
+`;
+
 const initialViewState = {
   longitude: 13.381777,
   latitude: 52.531677,
@@ -142,10 +147,10 @@ export default function SpotsMap() {
                     alt={selectedSpot.title}
                     width={130}
                     height={130}
-                    style={{ maxWidth: 110, maxHeight: 110 }}
+                    style={{ maxWidth: 125, maxHeight: 115 }}
                   />
-                  <h3>{selectedSpot.title}</h3>
                 </Link>
+                <PopUpTitle>{selectedSpot.title}</PopUpTitle>
               </div>
             </StyledPopup>
           );
