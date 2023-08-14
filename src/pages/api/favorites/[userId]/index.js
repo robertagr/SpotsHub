@@ -2,19 +2,12 @@ import { getFavoritesByUserId } from "../../../../../lib/db";
 import Favorite from "../../../../../db/models/Favorite";
 
 export default async function handler(request, response) {
-
   const { method } = request;
-  const {userId} = request.body;
-
-  // console.log(request)
-
-  // console.log("USERID", userId)
+  const { userId } = request.body;
 
   if (method === "GET") {
-          try {
-
-    const favorites = await getFavoritesByUserId(request.query.userId)
-    //  console.log(favorites)
+    try {
+      const favorites = await getFavoritesByUserId(request.query.userId);
 
       return response.status(200).json(favorites);
     } catch (error) {
@@ -23,23 +16,21 @@ export default async function handler(request, response) {
     }
   }
 
+  if (method === "DELETE") {
+    try {
+      const { spotId } = request.body;
+      const favorite = await Favorite.findOneAndDelete({
+        userId: request.query.userId,
+        spotId: spotId,
+      });
 
-if (method === "DELETE") {
-  try {
-    const { spotId } = request.body;
-    const favorite = await Favorite.findOneAndDelete({
-      userId: request.query.userId,
-      spotId: spotId,
-    });
-
-
-    if (!favorite) {
-      return response.status(404).json({ error: "Favorite not found" });
+      if (!favorite) {
+        return response.status(404).json({ error: "Favorite not found" });
+      }
+      return response.status(200).json({ status: "Success" });
+    } catch (error) {
+      console.error("Error unfavorite:", error);
+      return response.status(500).json({ error: "Internal Server Error" });
     }
-    return response.status(200).json({ status: "Success" });
-  } catch (error) {
-    console.error("Error unfavorite:", error);
-    return response.status(500).json({ error: "Internal Server Error" });
   }
-}
 }
