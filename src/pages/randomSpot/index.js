@@ -4,7 +4,7 @@ import RandomButton from "../../../components/RandomButton";
 import { useState, useEffect } from "react";
 
 const PageContainer = styled.div`
-  padding: 25px 145px 20px 145px;
+  padding: 25px 10px 20px 10px;
   margin: 0px;
   display: flex;
   flex-direction: column;
@@ -24,8 +24,6 @@ const Title = styled.h1`
   text-align: center;
   font-size: 23px;
   color: #2a2a2a;
-  /* margin-right: 150px; */
-  /* font-weight: 400; */
 `;
 
 const RandomTitleContainer = styled.div`
@@ -35,12 +33,9 @@ const RandomTitleContainer = styled.div`
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  /* background-color: #f5f5f5; */
   background-color: rgba(255, 255, 255, 0.75);
-
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 300%;
-  max-width: 400px;
+  min-width: 100%;
 `;
 
 const RandomTitleText = styled.div`
