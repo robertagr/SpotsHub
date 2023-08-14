@@ -68,8 +68,6 @@ export default function SpotsMap() {
     (spot) => spot.longitude !== undefined && spot.latitude !== undefined
   );
 
-  // console.log("VALID SP", validSpots);
-
   useEffect(() => {
     if (searchedSpots.length >= 0) {
       setSelectedSpots(searchedSpots);
@@ -88,8 +86,6 @@ export default function SpotsMap() {
     setSearchQuery(""); // Clear the search query
     setSelectedSpots([]); // Clear the selected spot to close the popup
   };
-
-  console.log({ searchedSpots, selectedSpots });
 
   return (
     <MapContainer>

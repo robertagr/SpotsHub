@@ -92,28 +92,6 @@ export default function DrinkSpotsList() {
     position: relative;
   `;
 
-  //   return (
-  //     <div>
-  //       <Title>{detailsList}</Title>
-  //       <Container>
-  //         {selectedDrinkCategory.map((spot) => (
-  //           <CategoryContainer key={spot._id}>
-  //             <Link href={`/drink/spots/bar/${spot.title}`}>
-  //               <h2 className="photo-name">{spot.title}</h2>
-  //               <Image
-  //                 src={spot.image}
-  //                 alt={spot.title}
-  //                 width={320}
-  //                 height={130}
-  //               />
-  //             </Link>
-  //           </CategoryContainer>
-  //         ))}
-  //       </Container>
-  //     </div>
-  //   );
-  // }
-
   return (
     <DetailsListWrapper>
       <TitleWrapper>
