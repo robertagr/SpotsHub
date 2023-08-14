@@ -91,8 +91,8 @@ export default function FavoriteSpot() {
   const { data: sessionData } = useSession();
   //   console.log(sessionData);
   const [data, setData] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch data only if sessionData is available
@@ -108,21 +108,21 @@ export default function FavoriteSpot() {
           setData(favoriteData);
           setIsLoading(false);
         } catch (error) {
-          // setError(error);
-          // setIsLoading(false);
+          setError(error);
+          setIsLoading(false);
         }
       };
       fetchData();
     }
   }, [sessionData]);
 
-  // if (isLoading) {
-  //   return null;
-  // }
+  if (isLoading) {
+    return null;
+  }
 
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   const handleFavoriteChange = (spotId, isFavorite) => {
     // Update the data state to reflect the favorite status change
