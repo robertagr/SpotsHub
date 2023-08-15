@@ -1,5 +1,5 @@
 import { getFavoritesByUserId } from "../../../../../lib/db";
-import Favorite from "../../../../utils/models/Favorite";
+import Favorite from "../../../../utils/database/Favorite";
 
 export default async function handler(request, response) {
   const { method } = request;
