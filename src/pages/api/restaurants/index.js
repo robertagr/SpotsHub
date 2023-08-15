@@ -1,5 +1,5 @@
-import dbConnect from "../../../utils/models/connect";
-import Spot from "../../../utils/models/Spot";
+import dbConnect from "../../../utils/database/connect";
+import Spot from "../../../utils/database/Spot";
 
 export default async function handler(request, response) {
   await dbConnect();
